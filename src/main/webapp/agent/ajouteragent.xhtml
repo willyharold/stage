@@ -17,8 +17,8 @@ and open the template in the editor.
         <div id="body">
             <div id="menu" style="float: right; margin-right: 10%;">
                 <ui:include src="../menu.xhtml" />
-            </div>
-            <div id="div1">
+            </div> 
+           <div id="div1">
 
             </div>
             <div id ="menu1">
@@ -35,23 +35,22 @@ and open the template in the editor.
                         </f:facet>
 
                         <h:outputText value="Nom"/> 
-                        <p:inputText  id="entree0" value="#{agentDeSuiviBean.agent.nom}"/> 
+                        <p:inputText  id="entree0" value="#{agentDeSuiviBean.nom}"/> 
 
                         <h:outputText value="Prenom"/> 
-                        <p:inputText  id="entree6" value="#{agentDeSuiviBean.agent.premon}"/>
+                        <p:inputText  id="entree6" value="#{agentDeSuiviBean.prenom}"/>
 
                         <h:outputText value="En Service"/> 
                         <p:inputText  id="entree7" value="#{agentDeSuiviBean.agent.enService}"/> 
 
                         <h:outputLabel for="email" value="E-mail: " />  
-                        <p:inputText   id="email" value="#{agentDeSuiviBean.agent.email}" required="true" />
+                        <p:inputText   id="email" value="#{agentDeSuiviBean.email}" required="true" />
 
                         <h:outputLabel for="fonction" value="Fonction: " />  
                         <p:inputText   id="fonction" value="#{agentDeSuiviBean.agent.fonction}" required="true" />
 
                         <h:outputText value="Telephone"/> 
-                        <p:inputText  id="entree9" value="#{compteBean.agent.numeroTelephone}"/> 
-
+                        <p:inputText  id="entree9" value="#{agentDeSuiviBean.telephone}"/> 
                         <f:facet name="footer"> <br/> 
                             <p:commandButton value="Enregistrer" action="#{agentDeSuiviBean.enregistrer()}"  icon="ui-icon-disk" />  
                         </f:facet>
