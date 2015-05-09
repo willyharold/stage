@@ -172,7 +172,7 @@ public class App {
 //
 //           //la gestion des etudiant Stage
 //            //IEtudiantStageDao etudiantStage = ctx.getBean(IEtudiantStageDao.class);
-            agentService = (IAgentScolariteService)ctx.getBean("IAgentScolariteService");
+           /* agentService = (IAgentScolariteService)ctx.getBean("IAgentScolariteService");
 
             AgentScolarite ag = new AgentScolarite();
             ag.setEmail("pouemo@gmail.fr");
@@ -183,8 +183,19 @@ public class App {
             ag.setNumeroTelephone("76324361");
             ag.setPremon("Adrien");
 
-            agentService.enregistrer(ag);
-//
+            agentService.enregistrer(ag);*/
+            
+           IAgentDeSuiviService agentsuivi = (IAgentDeSuiviService)ctx.getBean("IAgentDeSuiviService");
+
+           AgentDeSuivi agentDeSuivi= new AgentDeSuivi();
+           agentDeSuivi.setNom("takoutsing");
+           agentDeSuivi.setEmail("wtakoutsing@gmail.com");
+           agentDeSuivi.setEnService("daar");
+           agentDeSuivi.setPremon("harold");
+           agentDeSuivi.setNumeroTelephone("699996363");
+           agentDeSuivi.setFonction("enseignant");
+           agentsuivi.Enregistrer(agentDeSuivi);
+           //
 //            IEtudiantStageService etudiantStage = (IEtudiantStageService)ctx.getBean("IEtudiantStageService");
 //
 //            EtudiantStage ets = new EtudiantStage();
