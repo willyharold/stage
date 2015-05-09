@@ -1,0 +1,21 @@
+/* 
+    Document   : connexion
+    Created on : 9 mai 2015, 12:48:32
+    Author     : root
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#connexion{
+   text-align: center;
+   margin-left: 35%;
+   margin-right: 35%;
+   margin-top: 25%;
+}
+
+form{
+   /* background-color: cadetblue ;*/
+    background-color:graytext;
+    padding: 5px;
+    border-radius: 10px;
+}

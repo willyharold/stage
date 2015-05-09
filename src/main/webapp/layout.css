@@ -92,14 +92,17 @@ tabView{
     background-color: whitesmoke;  
 }
 #connexion{
-    background-image: url(images/logo.JPG) ;
+   /* background-image: url(images/logo.JPG) ;
     background-repeat: no-repeat;
     padding-top: 48px;
     margin-top: 150px;
     height: 500px;
     width: 500px;
     float: right;
-    margin-right:   320px;
+    margin-right:320px;*/
+   text-align: center;
+   margin: 450px;
+   
 }
 
 #pied{
