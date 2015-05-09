@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Ajouter une entreprise</title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+            <div id ="menu2">
+                <h:form style=""  id="creationCompte">
+
+                    <p:panelGrid columns="2"  >
+
+                        <f:facet name="header">  
+                            Enregistrer une Nouvelle Entreprise 
+                        </f:facet>
+
+                        <h:outputText value="Nom"/> 
+                        <p:inputText  id="entree0" value="#{entrepriseBean.entreprise.nomEntreprise}"/>
+
+                        <h:outputText value="Sigle"/> 
+                        <p:inputText  id="sigle" value="#{entrepriseBean.entreprise.sigle}"/>
+
+                        <h:outputText value="Ville"/> 
+                        <p:inputText  id="entree6" value="#{entrepriseBean.entreprise.nomVille}"/>
+
+                        <h:outputText value="Genre"/> 
+                        <p:inputText  id="genre" value="#{entrepriseBean.entreprise.genre}"/>
+
+                        <h:outputText value="Responsable"/> 
+                        <p:inputText  id="responsable" value="#{entrepriseBean.entreprise.reponsable}"/>
+
+                        <h:outputText value="Telephone"/> 
+                        <p:inputText  id="entree7" value="#{entrepriseBean.entreprise.numeroTelephone}"/> 
+
+                        <h:outputLabel for="email" value="E-mail: " />  
+                        <p:inputText   id="email" value="#{entrepriseBean.entreprise.e_mail}" required="true" />
+
+                        <h:outputText value="Boite Postal"/> 
+                        <p:inputText  id="entree9" value="#{entrepriseBean.entreprise.boitePostale}"/> 
+
+                        <h:outputText value="Fax"/> 
+                        <p:inputText  id="entree91" value="#{entrepriseBean.entreprise.fax}"/> 
+
+                        <h:outputText value="Localisation"/> 
+                        <p:inputText  id="entree92" value="#{entrepriseBean.entreprise.localisation}"/> 
+
+                        <f:facet name="footer"> <br/> 
+                            <p:commandButton value="Enregistrer" action="#{entrepriseBean.enregistrer()}"  icon="ui-icon-check" />  
+                        </f:facet>
+                        <f:facet name="footer">  
+                            <p:commandButton value="Initialiser" type="reset" />  
+                        </f:facet>
+                    </p:panelGrid>
+
+                </h:form>
+            </div>
+            <div id ="pied">
+
+                <ui:include src="../pied.xhtml" />
+
+            </div>
+        </div>
+    </body>
+</html>

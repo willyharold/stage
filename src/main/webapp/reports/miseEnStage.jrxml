@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="miseEnStage" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48668ea8-b5f8-4f99-96ff-a58f707f8ee0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="172"/>
+	<field name="nom" class="java.lang.String"/>
+	<field name="matricule" class="java.lang.String"/>
+	<field name="prenom" class="java.lang.String"/>
+	<field name="nomEntreprise" class="java.lang.String"/>
+	<field name="niveau" class="java.lang.String"/>
+	<field name="parcours" class="java.lang.String"/>
+	<field name="nomVille" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="122" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="122" uuid="af0f3f88-c543-48f4-a0b9-61f81571ddb6"/>
+				<imageExpression><![CDATA["/home/pouemo/projetTutore/GestionStage/src/main/webapp/reports/image/entete.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="677" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="11" width="555" height="1" uuid="1ae625cd-9dbf-4fd0-b83b-a8e7b83921d1"/>
+			</line>
+			<staticText>
+				<reportElement x="129" y="28" width="309" height="32" uuid="29e4ac68-c374-46a5-951d-fb6ca85b90d6"/>
+				<textElement>
+					<font fontName="Abyssinica SIL" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ATTESTATION DE MISE EN STAGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="86" width="526" height="20" uuid="84aae7af-ec02-4fe2-9de3-02ebe9716cd8"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Je, soussigné Directeur de l'Institut Superieur du Sahel de L'Universite de Maroua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="117" width="516" height="20" uuid="e601f40c-2a9c-46a4-8152-64b47b978d9f"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[atteste que,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="29" y="148" width="209" height="20" uuid="32573c14-f0a5-49a9-a18f-6afcd0bb9e5d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Monsieur/Madame/Mademoiselle ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="257" y="148" width="100" height="20" uuid="6e77f3ac-60ef-41c3-8bd1-53c26d9d1872"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="426" y="148" width="100" height="20" uuid="62c589cb-f07c-4d25-97e2-6e200b567ace"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{prenom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="179" width="87" height="20" uuid="3223f5de-432d-4269-bb1e-80c201aacebf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[inscrit(e) en ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="129" y="179" width="89" height="20" uuid="04f1367e-fdf3-43a2-9f1e-a0df026c98ed"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{niveau}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="238" y="179" width="84" height="20" uuid="7d8aa7c1-f4ca-40e9-94e4-61898b6ea496"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[du parcours]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="369" y="179" width="100" height="20" uuid="b89c0388-6caf-4b5d-b51c-852a6a5cb530"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{parcours}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="216" width="169" height="20" uuid="c7b4774d-f16f-4fe5-ac14-f973de38b97e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[sous le numéro matricule]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="192" y="216" width="100" height="20" uuid="0856d3d1-dabe-4a15-81e4-e236fd0ee12c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricule}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="216" width="230" height="20" uuid="511e7708-9a96-4ae7-8c8b-8c7f42e47507"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ est autorisé(e) à suivre un stage ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="252" width="535" height="20" uuid="69c4df52-6ba1-4ad2-b641-d0b14a6167aa"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[d'imprégnation de la période du 02 Septembre au 02 Octobre 2013 dans la structure duivante]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="146" y="282" width="223" height="20" uuid="9080c402-de06-4c42-b515-788d2ba07866"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomEntreprise}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="405" y="282" width="150" height="20" uuid="8a6a6132-e543-417a-b241-8de24f4c98d4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomVille}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="10" y="325" width="526" height="20" uuid="b229fad0-e4b6-4917-894c-4fbd490cd54b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[        Ce stage d'imprénation permert de se familiariser avec lemonde ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="364" width="507" height="20" uuid="8fe94ebd-2931-4275-ad6b-0b39c2b07bf2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[professionnel, d'adapter les apprentissages pédagogiques acquis à l'Institut à ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="397" width="507" height="20" uuid="88410b28-a791-4e14-a0d7-623c7971a072"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[celles   d'un milieu concret d'ingégnierie.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="442" width="535" height="20" uuid="00d0c2b3-b57e-475b-a85a-e110dccf088d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[      Nous le recommandons auprès du responsable de la structure pour son accueil]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="472" width="535" height="20" uuid="13d9d763-2a24-4391-a71f-278744c14965"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[et son encardrement. Le cahier de stage et le barème de notation ci-joints devront]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="510" width="526" height="20" uuid="40644bcb-3a1c-400a-9aa6-187afd40d9db"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[être signés par l'encardreur au sein de la structure et remis à l'étudiant en vue de]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="544" width="526" height="20" uuid="91281d42-7280-4feb-8c1e-38b1b5dcf22e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[de la transmission à l'ISS. Le barème de notation devra être sous pli fermé.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="613" width="191" height="30" uuid="568b6059-f8fd-44f9-93c9-b015bb07a3d1"/>
+				<textElement>
+					<font size="24" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Le Directeur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="282" width="118" height="20" uuid="80b43d13-a7dc-4c26-b176-517b7ee1688d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[structure suivante]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

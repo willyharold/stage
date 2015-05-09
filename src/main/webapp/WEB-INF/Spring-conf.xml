@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+          http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+">
+    
+                                        
+    <!-- couche dao -->
+   
+    <bean id="IEntrepriseDao" class="com.projet.ig.gestionstage.Dao.BD.EntrepriseDaoBD"/>
+    <bean id="IAgentSuiviDao" class="com.projet.ig.gestionstage.Dao.BD.AgentDeSuiviDaoBD"/>
+    <bean id="IDomaineActiviteDao" class ="com.projet.ig.gestionstage.Dao.BD.DomaineActiviteDaoBD" />
+    <bean id= "IStageDao" class = "com.projet.ig.gestionstage.Dao.BD.StageDaoBD" />
+    <bean id= "IEtudiantDao" class = "com.projet.ig.gestionstage.Dao.BD.EtudiantDaoBD" />
+    <bean id= "IEtudiantStageDao" class = "com.projet.ig.gestionstage.Dao.BD.EtudiantStageDaoBD" />
+    <bean id= "IAnneeAcademiqueDao" class = "com.projet.ig.gestionstage.Dao.BD.AnneeAcademiqueDaoBD" />
+    <bean id= "IAgentScolariteDao" class = "com.projet.ig.gestionstage.Dao.BD.AgentScolariteDaoDB" />
+    <bean id= "IDocumentsDao" class = "com.projet.ig.gestionstage.Dao.BD.DocumentsDaoBD" />
+    <bean id= "IAgentEntrepriseDao" class = "com.projet.ig.gestionstage.Dao.BD.AgentEntrepriseDaoBD" />
+    
+
+    <!--les  couches service -->
+    
+    <!-- la classe Entreprise Service-->
+    <bean id="IEntrepriseService" class="com.projet.ig.gestionstage.services.Imp.EntrepriseServideImp">
+        <property name="entreprisedao" ref="IEntrepriseDao"/>
+        <property name="agentdSuiviDao" ref="IAgentSuiviDao"/>
+        <property name="domaineDao" ref="IDomaineActiviteDao"/>
+        <property name="stagedao" ref ="IStageDao"/>
+
+    </bean>
+    
+    <!-- la classe Service AgentDe suivi-->
+    <bean id="IAgentDeSuiviService" class="com.projet.ig.gestionstage.services.Imp.AgentDeSuiviServiceImp">
+        <property name="agentdSuiviDao" ref="IAgentSuiviDao"/>
+    </bean>
+    
+    <!-- la classe service de stage -->
+    <bean id="IStageService" class="com.projet.ig.gestionstage.services.Imp.StageServiceImp">
+        <property name="stagedao" ref="IStageDao"/>
+        <property name="etudiantdao" ref="IEtudiantDao"/>
+    </bean>
+    
+    <!-- la classe service des domaines activites -->
+    <bean id="IDomaineActiviteService" class="com.projet.ig.gestionstage.services.Imp.DomaineActiviteServiceImp">
+        <property name="domainedao" ref="IDomaineActiviteDao"/>
+    </bean>
+  
+    <!-- la classe service des etudiants -->
+    <bean id="IEtudiantService" class="com.projet.ig.gestionstage.services.Imp.EtudiantServiceImp">
+        <property name="etudiantdao" ref="IEtudiantDao"/>
+    </bean>
+    
+    <!-- la classe service des etudiants_stage -->
+    <bean id="IEtudiantStageService" class="com.projet.ig.gestionstage.services.Imp.EtudiantStageServiceImpl">
+        <property name="etudiantStagedao" ref="IEtudiantStageDao"/>
+        <property name="anneedao" ref="IAnneeAcademiqueDao"/>
+        <property name="stagedao" ref="IStageDao"/>
+        <property name="etudiantdao" ref="IEtudiantDao"/>
+    </bean>
+    
+    <!-- la classe service Annee academique -->
+    <bean id="IAnneeAcademiqueService" class="com.projet.ig.gestionstage.services.Imp.AnneeAcademiqueServiceImpl">
+        <property name="anneeDao" ref="IAnneeAcademiqueDao"/>
+    </bean>
+    
+    <!-- la classe service des agents de la scolarite -->
+    <bean id="IAgentScolariteService" class="com.projet.ig.gestionstage.services.Imp.AgentScolariteServiceImpl">
+        <property name="agentScolariteDao" ref="IAgentScolariteDao"/>
+    </bean>
+    
+    <!-- la classe service des documents -->
+    <bean id="IDocumentsService" class="com.projet.ig.gestionstage.services.Imp.DocumentsServiceImpl">
+        <property name="documentsDao" ref="IDocumentsDao"/>
+    </bean>
+    
+    <!-- la classe service des agents_Entreprise -->
+    <bean id="IAgentEntrepriseService" class="com.projet.ig.gestionstage.services.Imp.AgentEntrepriseServieImpl">
+        <property name="agentEntrepriseDao" ref="IAgentEntrepriseDao"/>
+    </bean>
+          
+          
+    <!-- le fichier de configuration de la base de donnees-->
+    
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">   
+        <property name="locations" value="classpath:config.properties"/>
+    </bean>
+   
+    <!-- la source de donnéees DBCP -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" >
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="${db.bd}" />
+        <property name="username" value="${db.username}" />
+        <property name="password" value="${db.password}" />
+    </bean>
+    
+    <!-- couche de persistance JPA -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="jpaVendorAdapter">
+        
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                
+                <property name="showSql" value="true" />  
+              
+                <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
+                <property name="generateDdl" value="true" />
+            </bean>
+        </property>
+
+        <property name="loadTimeWeaver">
+            <bean class="org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver" />
+
+        </property>
+    </bean>
+    <!-- le gestionnaire de transactions -->
+    <tx:annotation-driven transaction-manager="txManager" />
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+    <!-- traduction des exceptions -->
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+    <!-- annotations de persistance -->
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+    
+</beans>

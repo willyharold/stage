@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Importer les entreprises </title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+            <div id ="menu2">
+
+                <!-- Creation des lettres de demande de tagee pour les entreprise -->
+
+                <h:form enctype="multipart/form-data">  
+
+                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+                                  mode="advanced"   
+                                  update="messages"  
+                                  sizeLimit="100000"   
+                                  allowTypes="/(\.|\/)(csv|xlsx|xls)$/" />  
+
+                    <p:growl id="messages" showDetail="true"/> 
+                    <p:panelGrid columns="2"  >
+                        <f:facet name="footer"> <br/> 
+                            <p:commandButton value="Importer"   icon="ui-icon-plus"   action="#{excelBean.test()}"/>                              
+                        </f:facet>
+                    </p:panelGrid>
+                    <h:commandLink  actionListener="#{excelBean.test()}" >
+                        <p:graphicImage  alt="Importation" />
+                    </h:commandLink>
+                </h:form>
+            </div>
+            <div id ="pied">
+                <ui:include src="../pied.xhtml" />
+            </div>
+        </div>
+    </body>
+</html>

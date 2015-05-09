@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>documents</title>
+        <link rel="StyleSheet" href="layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="entete.xhtml" />
+            </div>
+            <div id ="menu2">
+                <p:tabView id="tabView"> 
+                    <p:tab title="Liste des Documents">
+                        <h:form id="form">  
+                            <p:dataTable  var="document" value="#{documentBean.documents}" selection="#{documentBean.documensSelect}" selectionMode="single" rowKey="#{document.id}">  
+
+                                <f:facet name="header">  
+                                    Liste des Documents  
+                                </f:facet> 
+
+                                <p:column headerText="Recepteur" filterBy="#{document.recepteur}" sortBy="#{document.recepteur}">
+
+                                    <h:outputText value="#{document.recepteur}" />  
+                                </p:column>  
+
+                                <p:column headerText="Destinateur" filterBy="#{document.destinateur}" sortBy="#{document.destinateur}">  
+                                    <h:outputText value="#{document.destinateur}" />  
+                                </p:column> 
+
+                                <p:column headerText="Nom" filterBy="#{document.type}" sortBy="#{document.type}">  
+                                    <h:outputText value="#{document.type}" />  
+                                </p:column> 
+
+                                <p:column headerText="Date" filterBy="#{document.dateOpeartion}" sortBy="#{document.dateOpeartion}">  
+                                    <h:outputText value="#{document.dateOpeartion}" />  
+                                </p:column>
+                                
+                                <p:column headerText="Annee" filterBy="#{document.annee.anneeAcademique}" sortBy="#{document.annee.anneeAcademique}">  
+                                    <h:outputText value="#{document.annee.anneeAcademique}" />  
+                                </p:column>
+                                
+                                <f:facet name="footer">  
+                                    <p:commandButton value="Details" image="ui-icon ui-icon-search"  
+                                                     update=":tabView:form:display"  oncomplete="compteDialog.show()"/>  
+                                </f:facet> 
+
+                            </p:dataTable> 
+
+                            <p:dialog header="Details du Document" widgetVar="compteDialog" resizable="false"  
+                                      width="500" showEffect="clip" hideEffect="fold">  
+
+                                <h:panelGrid id="display" columns="2" >  
+
+                                    <h:outputText value="Recepteur:" />  
+                                    <h:outputText value="#{documentBean.documensSelect.recepteur}" />  
+
+                                    <h:outputText value="Destinateur:" />  
+                                    <h:outputText value="#{documentBean.documensSelect.destinateur}" />  
+
+                                    <h:outputText value="Nom:" />  
+                                    <h:outputText value="#{documentBean.documensSelect.type}" />  
+
+                                    <h:outputText value="Date:" />  
+                                    <h:outputText value="#{documentBean.documensSelect.dateOpeartion}" />
+                                    
+                                    <h:outputText value="Annee:" />  
+                                    <h:outputText value="#{documentBean.documensSelect.annee.anneeAcademique}" />
+                                    
+                                </h:panelGrid>  
+                            </p:dialog>
+                        </h:form>
+
+                    </p:tab>
+                    <p:tab title="Ajouter un Document">
+                        <h:form style=""  id="ajouterDoc">
+
+                            <p:panelGrid columns="2"  >
+
+                                <f:facet name="header">  
+                                    Ajouter un Document  
+                                </f:facet>
+                                <h:outputText value="Annee Academique "/> 
+                                <h:selectOneMenu id="annee" value="#{documentBean.annee.anneeAcademique}" >
+                                    <f:selectItems value="#{documentBean.annees}" /> 
+                                </h:selectOneMenu>
+                                
+                                <h:outputText value="Recepteur"/> 
+                                <p:inputText  id="entree0" value="#{documentBean.document.recepteur}"/> 
+
+                                <h:outputText value="Destinateur"/> 
+                                <p:inputText  id="entree6" value="#{documentBean.document.destinateur}"/>
+
+                                <h:outputText value="Nom"/> 
+                                <p:inputText  id="entree7" value="#{documentBean.document.type}"/>
+                                
+                                <f:facet name="footer"> <br/> 
+                                    <p:commandButton value="Enregistrer" action="#{documentBean.enregistrer()}"  icon="ui-icon-check"  update=":tabView:form" />  
+                                </f:facet>
+                                <f:facet name="footer">  
+                                    <p:commandButton value="Initialiser" type="reset" />  
+                                </f:facet>
+                            </p:panelGrid>
+
+                        </h:form>
+                    </p:tab>
+                    
+                </p:tabView>
+            </div>
+        </div>
+    </body>
+</html>

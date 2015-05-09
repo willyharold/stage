@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>generation des lettres </title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+            <div id ="menu2">
+
+                <!-- Creation des lettres de demande de tagee pour les entreprise -->
+
+                <h:form style=""  id="Remerciement">
+
+                    <p:contextMenu for="entrepriseTable2"> 
+                        <p:menuitem value="Demande"    oncomplete="entrepriseDialog.show()"    icon="ui-icon-document"   />
+                        <p:menuitem value="Remerciement" oncomplete="histoiriqueDialog.show()"  icon="ui-icon-document"  />
+                    </p:contextMenu>
+
+                    <p:dataTable var="entreprise" id="entrepriseTable2" value="#{entrepriseBean.entreprises}" selection="#{entrepriseBean.entrepriseSelected}" selectionMode="single" rowKey="#{entreprise.id}" paginator="true" rows="10" >  
+
+                        <f:facet name="header">  
+                            Liste des Entreprise  
+                        </f:facet> 
+
+                        <p:column headerText="Nom" filterBy="#{entreprise.nomEntreprise}" sortBy="#{entreprise.nomEntreprise}">
+                            <h:outputText value="#{entreprise.nomEntreprise}" />  
+                        </p:column>
+
+                        <p:column headerText="Sigle" filterBy="#{entreprise.sigle}" sortBy="#{entreprise.sigle}">
+                            <h:outputText value="#{entreprise.sigle}" />  
+                        </p:column>
+
+                        <p:column headerText="Ville" filterBy="#{entreprise.nomVille}" sortBy="#{entreprise.nomVille}">  
+                            <h:outputText value="#{entreprise.nomVille}" />  
+                        </p:column> 
+
+                        <p:column headerText="Telephone" filterBy="#{entreprise.numeroTelephone}" sortBy="#{entreprise.numeroTelephone}">  
+                            <h:outputText value="#{entreprise.numeroTelephone}" />  
+                        </p:column> 
+
+                        <p:column headerText="E-mail" filterBy="#{entreprise.e_mail}" sortBy="#{entreprise.e_mail}">  
+                            <h:outputText value="#{entreprise.e_mail}" />  
+                        </p:column>
+
+                        <p:column headerText="B.P." filterBy="#{entreprise.boitePostale}" sortBy="#{entreprise.boitePostale}">  
+                            <h:outputText value="#{entreprise.boitePostale}" />  
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:form>
+            </div>
+            <div id ="pied">
+                <ui:include src="../pied.xhtml" />
+            </div>
+        </div>
+    </body>
+</html>

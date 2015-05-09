@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>liste des etudiants</title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="menu" style="float: right; margin-right: 10%;">
+                <ui:include src="../menu.xhtml" />
+            </div>
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+
+            <div id ="menu2">
+                <h:form id="form"> 
+
+                    <p:contextMenu for="etudiantTable">     
+                        <p:menuitem value="Historique"   oncomplete="histoiriqueDialog.show()"  icon="ui-icon-document" update=":afficheHistorique" />
+                        <p:menuitem value="Modifier"     oncomplete="modificationDialog.show()" icon="ui-icon-pencil"   update=":modifierForm:modifierPanel"/> 
+                    </p:contextMenu>
+
+                    <p:dataTable id="etudiantTable" var="etudiant" value="#{etudiantBean.etudiants}" selection="#{etudiantBean.etudiantSelect}" selectionMode="single" rowKey="#{etudiant.id}" paginator="true" rows="10">  
+
+                        <f:facet name="header">  
+                            Liste des Etudiants  
+                        </f:facet> 
+
+                        <p:column headerText="Matricule" filterBy="#{etudiant.matricule}" sortBy="#{etudiant.matricule}">  
+                            <h:outputText value="#{etudiant.matricule}" />  
+                        </p:column>  
+
+                        <p:column headerText="Nom" filterBy="#{etudiant.nom}" sortBy="#{etudiant.nom}">  
+                            <h:outputText value="#{etudiant.nom}" />  
+                        </p:column> 
+
+                        <p:column headerText="Prenom" filterBy="#{etudiant.premon}" sortBy="#{etudiant.premon}">  
+                            <h:outputText value="#{etudiant.premon}" />  
+                        </p:column> 
+
+                        <p:column headerText="Parcours" filterBy="#{etudiant.parcours}" sortBy="#{etudiant.parcours}" filterOptions="#{etudiantBean.parcoursOptions}"  filterMatchMode="exact">  
+                            <h:outputText value="#{etudiant.parcours}" />  
+                        </p:column>
+
+                        <p:column headerText="Niveau" filterBy="#{etudiant.niveau}" sortBy="#{etudiant.niveau}">  
+                            <h:outputText value="#{etudiant.niveau}" />  
+                        </p:column> 
+
+                    </p:dataTable> 
+                </h:form>
+
+                <p:dialog header="Historiques" widgetVar="histoiriqueDialog" resizable="true"  
+                          width="900" showEffect="clip" hideEffect="fold">  
+
+                    <p:dataTable var="stage" value="#{etudiantBean.stagesEtudiant}"  id="afficheHistorique">
+
+                        <p:column headerText="Annee"  >  
+                            <h:outputText value="#{stage.anneeAcademic.anneeAcademique}" />  
+                        </p:column>
+
+                        <p:column headerText="Entreprise" >  
+                            <h:outputText value="#{stage.entreprise.nomEntreprise}" />  
+                        </p:column> 
+
+                        <p:column headerText="Ville" >  
+                            <h:outputText value="#{stage.entreprise.nomVille}" />  
+                        </p:column>
+
+                        <p:column headerText="Categorie">  
+                            <h:outputText value="#{stage.cathegorie}" />  
+                        </p:column> 
+
+                        <p:column headerText="Theme">  
+                            <h:outputText value="#{stage.theme}" />  
+                        </p:column> 
+                    </p:dataTable>   
+                </p:dialog>
+
+                <p:dialog header="Modification" widgetVar="modificationDialog" resizable="true"  
+                          width="400" showEffect="clip" hideEffect="fold">  
+
+                    <h:form style=""  id="modifierForm">
+
+                        <p:panelGrid columns="2"  id="modifierPanel">
+
+                            <h:outputText value="Nom"/> 
+                            <p:inputText  id="nomUpdate" value="#{etudiantBean.etudiantSelect.nom}"/> 
+
+                            <h:outputText value="Prenom"/> 
+                            <p:inputText  id="prenomUpdate" value="#{etudiantBean.etudiantSelect.premon}"/>
+
+                            <h:outputText value="Matricule"/> 
+                            <p:inputText  id="matriculeUpdate" value="#{etudiantBean.etudiantSelect.matricule}"/> 
+
+                            <h:outputLabel for="parcours" value="Parcours: " />  
+                            <h:selectOneMenu id="parcoursUpdate" value="#{etudiantBean.etudiantSelect.parcours}" required="true">
+                                <f:selectItems value="#{etudiantBean.listerParcours()}" />  
+                            </h:selectOneMenu>
+
+                            <h:outputLabel for="niveau" value="Niveau: " />  
+                            <h:selectOneMenu id="niveauUpdate" value="#{etudiantBean.etudiantSelect.niveau}" required="true">
+                                <f:selectItems value="#{etudiantBean.listerNiveau()}" />  
+                            </h:selectOneMenu>
+
+                            <f:facet name="footer"> <br/> 
+                                <p:commandButton value="OK" action="#{etudiantBean.enregistrer()}"  actionListener="#{etudiantBean.save}" icon="ui-icon-disk" />  
+                            </f:facet>
+                            <f:facet name="footer">  
+                                <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  
+                            </f:facet>
+                        </p:panelGrid>
+
+                    </h:form>  
+
+                </p:dialog>
+
+
+            </div>
+        </div>
+    </body>
+</html>

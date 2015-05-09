@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Modifier mot de passe </title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="menu" style="float: right; margin-right: 10%;">
+                <ui:include src="../menu.xhtml" />
+            </div>
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+
+            <div id ="menu2">
+                <h:form id="form"> 
+
+                    <p:growl id="growl" showDetail="true" sticky="true" /> 
+
+                    <p:panelGrid columns="2"  >
+                        <f:facet name="header">  
+                            Modifer votre mot de passe  
+                        </f:facet>         
+
+                        <h:outputText value="Login"/> 
+                        <p:inputText  id="entree0" value="#{compteBean.agent.login}"/> 
+
+                        <h:outputLabel for="pwd2" value="Ancien mot de passe" />
+                        <p:password id="pwd2" value="#{compteBean.agent.motdePasse}"  label="Password 1" required="true"/> 
+
+                        <h:outputLabel for="pwd3" value="Nouveau Mot de passe" />
+                        <p:password id="pwd3" value="#{compteBean.motdePass}"  label="Password 1" required="true"/> 
+
+                        <f:facet name="footer"> <br/> 
+                            <p:commandButton value="Modifier" action="#{compteBean.modifierCompte()}" actionListener="#{compteBean.update}" icon="ui-icon-check" />  
+                        </f:facet>
+                        <f:facet name="footer">  
+                            <p:commandButton value="Initialiser" type="reset" />  
+                        </f:facet>
+                    </p:panelGrid> 
+
+                </h:form>
+            </div>
+        </div>
+    </body>
+</html>

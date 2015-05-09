@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="miseEnStage" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="48668ea8-b5f8-4f99-96ff-a58f707f8ee0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="14"/>
+	<field name="nomEntreprise" class="java.lang.String"/>
+	<field name="nomVille" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="122" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="122" uuid="af0f3f88-c543-48f4-a0b9-61f81571ddb6"/>
+				<imageExpression><![CDATA["/home/pouemo/projetTutore/GestionStage/src/main/webapp/reports/image/entete.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="677" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="11" width="555" height="1" uuid="1ae625cd-9dbf-4fd0-b83b-a8e7b83921d1"/>
+			</line>
+			<staticText>
+				<reportElement x="6" y="23" width="276" height="21" uuid="29e4ac68-c374-46a5-951d-fb6ca85b90d6"/>
+				<textElement>
+					<font fontName="Abyssinica SIL" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N°____________UMa/R/DISS/DSES/SSP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="216" width="51" height="20" uuid="c7b4774d-f16f-4fe5-ac14-f973de38b97e"/>
+				<textElement>
+					<font size="12" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Object : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="216" width="230" height="20" uuid="511e7708-9a96-4ae7-8c8b-8c7f42e47507"/>
+				<textElement>
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Demande de stages]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="262" width="204" height="20" uuid="69c4df52-6ba1-4ad2-b641-d0b14a6167aa"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Monsieur le directeur Général]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="320" width="545" height="16" uuid="b229fad0-e4b6-4917-894c-4fbd490cd54b"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[l'année dernière, je saisis cette ocasion pour vous remercier de votre engargement ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="347" width="516" height="17" uuid="8fe94ebd-2931-4275-ad6b-0b39c2b07bf2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[à accompagner l'Institut Superieur de Sahel dans son effort de donner une formation ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="374" width="516" height="15" uuid="88410b28-a791-4e14-a0d7-623c7971a072"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[adéquate relevant de son domaine d'expertise.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="401" width="535" height="15" uuid="00d0c2b3-b57e-475b-a85a-e110dccf088d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[       Dans le même élan de solidarité, je viens par la présente soliciter une fois de plus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="426" width="535" height="15" uuid="13d9d763-2a24-4391-a71f-278744c14965"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[votre concours pour l'accueil en stage de nos étudiants pour le compte de l'année ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="451" width="526" height="18" uuid="40644bcb-3a1c-400a-9aa6-187afd40d9db"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[académique 2013/2014 confermément à la convention liant nos deux structures]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="486" width="526" height="16" uuid="91281d42-7280-4feb-8c1e-38b1b5dcf22e"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[    Lesdits stages se derouleront du :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="294" width="468" height="14" uuid="80b43d13-a7dc-4c26-b176-517b7ee1688d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Vous avez bien voulu accepter recevoir nos étudiants dans votre structure]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="23" width="116" height="21" uuid="feda4b61-0c6d-41e7-983c-628d1fc2d9b0"/>
+				<textElement>
+					<font fontName="Abyssinica SIL" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Maroua, le]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="75" width="253" height="21" uuid="6c414fda-9b45-4b3b-a7f6-b443b9f1271d"/>
+				<textElement>
+					<font fontName="Abyssinica SIL" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A Monsieur le Directeur Général]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="112" width="223" height="20" uuid="46e65195-02ba-4897-975c-aa3abbfb44d5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomEntreprise}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="292" y="147" width="150" height="20" uuid="5d120818-421b-49c5-8423-1d682b276bb8"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nomVille}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="520" width="549" height="15" uuid="318d0799-6c48-45e8-a21d-2791e848385d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[  Pendant le stage, les étudiants sont assurés par la police d'assurance de L'Université]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="545" width="549" height="17" uuid="10eb4c56-6bfe-4e9f-855e-a7401b6ee98d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[de Maroua, et leur prise en charge pour dépenses personnelles par leurs soins.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="573" width="520" height="20" uuid="88135878-4adf-4ea8-9818-b22fdbb31ece"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[    Dans l'attente d'une suite favorable à notre demande, veuillez agréer, Monsieur ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="603" width="530" height="20" uuid="3029a274-ab7a-4722-ac0e-3ccad902d3df"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Le Directeur Général, l'expression de ma parfaite consideration]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+</jasperReport>

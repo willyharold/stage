@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Modifier mot de passe </title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="menu" style="float: right; margin-right: 10%;">
+                <ui:include src="../menu.xhtml" />
+            </div>
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+
+            <div id ="menu2">
+                <h:form id="form">  
+                    
+                    <p:contextMenu for="agentTable">     
+                        <p:menuitem value="Affecter"   oncomplete="histoiriqueDialog.show()"  icon="ui-icon-home"  />
+                        <p:menuitem value="Modifier"     oncomplete="modificationDialog.show()" icon="ui-icon-pencil"  /> 
+                    </p:contextMenu>
+                    
+                    <p:dataTable  var="agent" id="agentTable" value="#{agentDeSuiviBean.agents}" selection="#{agentDeSuiviBean.agentSelect}" selectionMode="single" rowKey="#{agent.id}" paginator="true" rows="10">  
+
+                        <f:facet name="header">  
+                            Liste des Agents  
+                        </f:facet> 
+
+                        <p:column headerText="Nom" filterBy="#{agent.nom}" sortBy="#{agent.nom}">
+
+                            <h:outputText value="#{agent.nom}" />  
+                        </p:column>  
+
+                        <p:column headerText="Prenom" filterBy="#{agentpremon}" sortBy="#{agent.premon}">  
+                            <h:outputText value="#{agent.premon}" />  
+                        </p:column> 
+
+                        <p:column headerText="Telephone" filterBy="#{agent.numeroTelephone}" sortBy="#{agent.numeroTelephone}">  
+                            <h:outputText value="#{agent.numeroTelephone}" />  
+                        </p:column> 
+
+                        <p:column headerText="Fonction" filterBy="#{agent.fonction}" sortBy="#{agent.fonction}">  
+                            <h:outputText value="#{agent.fonction}" />  
+                        </p:column>
+
+                        <p:column headerText="E-mail" filterBy="#{agent.email}" sortBy="#{agent.email}">  
+                            <h:outputText value="#{agent.email}" />  
+                        </p:column>
+                    </p:dataTable> 
+
+                    <p:dialog header="Details du Compte" widgetVar="compteDialog" resizable="false"  
+                              width="500" showEffect="clip" hideEffect="fold">  
+
+                        <h:panelGrid id="display" columns="2" >  
+
+                            <h:outputText value="Nom:" />  
+                            <h:outputText value="#{agentDeSuiviBean.agentSelect.nom}" />  
+
+                            <h:outputText value="Prenom:" />  
+                            <h:outputText value="#{agentDeSuiviBean.agentSelect.premon}" />  
+
+                            <h:outputText value="Fonction:" />  
+                            <h:outputText value="#{agentDeSuiviBean.agentSelect.fonction}" />  
+
+                            <h:outputText value="Telephone:" />  
+                            <h:outputText value="#{agentDeSuiviBean.agentSelect.numeroTelephone}" />
+
+                            <h:outputText value="E-mail:" />  
+                            <h:outputText value="#{agentDeSuiviBean.agentSelect.email}" />
+
+                        </h:panelGrid>  
+                    </p:dialog>
+                </h:form>
+            </div>
+        </div>
+    </body>
+</html>

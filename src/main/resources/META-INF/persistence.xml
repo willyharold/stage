@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+  <persistence-unit name="stage" transaction-type="RESOURCE_LOCAL">
+    <!--    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <class>com.projet.ig.gestionstage.entity.Entreprise</class>
+    <class>com.projet.ig.gestionstage.entity.DomaineActivite</class>
+    <class>com.projet.ig.gestionstage.entity.Stage</class>
+    <class>com.projet.ig.gestionstage.entity.Etudiant</class>
+    <class>com.projet.ig.gestionstage.entity.Personel</class>
+    <class>com.projet.ig.gestionstage.entity.AgentDeSuivi</class>
+    <class>com.projet.ig.gestionstage.entity.Encardreur</class>
+    <class>com.projet.ig.gestionstage.entity.AgentScolarite</class>
+    <properties>
+      <property name="hibernate.connection.username" value="root"/>
+      <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+      <property name="hibernate.connection.password" value="pouemo"/>
+      <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/Stages?zeroDateTimeBehavior=convertToNull"/>
+      <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>-->
+    <!--    <class>com.projet.ig.gestionstage.entity.EtudiantStage</class>
+    <class>com.projet.ig.gestionstage.entity.IdEtudiantStage</class>-->
+    <!--    <class>com.projet.ig.gestionstage.entity.ReponseEntreprise</class>
+    <class>com.projet.ig.gestionstage.entity.AnneeAcademique</class>-->
+    <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <non-jta-data-source>Stages</non-jta-data-source>
+    <class>com.projet.ig.gestionstage.entity.Documents</class>
+    <properties>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+    </properties>
+  </persistence-unit>
+</persistence>

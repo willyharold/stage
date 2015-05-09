@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>entete</title>
+    </h:head>
+    <body>
+        <h:form>
+            <p:menubar id="unique">  activeIndex="0">
+                <p:menuitem value="Accueil" action="#{accueilBean.accueil()}" icon="ui-icon-home"/>
+                <p:submenu label="Agent" icon="ui-icon-person">  
+                    <p:menuitem value="Ajouter" url="/agent/ajouteragent.xhtml" icon="ui-icon-plus" />  
+                    <p:menuitem value="Liste" url="/agent/listeagents.xhtml" icon="ui-icon-document" />
+                </p:submenu>
+                <p:submenu label="Etudiants" icon="ui-icon-person">
+                    <p:menuitem value="Ajouter" url="/etudiant/ajouteretudiant.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Importation" url="/etudiant/importation.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Liste" url="/etudiant/listeetudiants.xhtml" icon="ui-icon-document" />
+                </p:submenu>
+                <p:submenu label="Entreprises" icon="ui-icon-wrench">  
+                    <p:menuitem value="Ajouter" url="/entreprise/creationentreprise.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Generation" url="/entreprise/demandestage.xhtml" icon="ui-icon-document" />
+                    <p:menuitem value="Importer" url="/entreprise/importation.xhtml" icon="ui-icon-dowload" />
+                    <p:menuitem value="Lettres" url="/entreprise/gestionlettres.xhtml" icon="ui-icon-" />
+                    <p:menuitem value="Liste" url="/entreprise/listeentreprises.xhtml" icon="ui-icon-document" />
+                </p:submenu>
+                <p:submenu label="Stages" icon="ui-icon-document">  
+                    <p:menuitem value="Ajouter" url="/stage/ajouterstage.xhtml" icon="ui-icon-plus" />
+                    <p:menuitem value="Lettres" url="/stage/generationLettres.xhtml" icon="ui-icon-document" />
+                    <p:menuitem value="Liste" url="/stage/listestage.xhtml" icon="ui-icon-document" />  
+                    <p:menuitem value="Stagiaires" url="/stage/stagiaires.xhtml" icon="ui-icon-person" />
+                </p:submenu>
+                <p:menuitem value="Documents" action="#{accueilBean.document()}" icon="ui-icon-folder-collapsed"/>  
+                <p:menuitem value=""  icon="ui-icon-" />
+                <p:submenu label="Statistiques" icon="ui-icon-bookmark">  
+                    <p:menuitem value="Annuelle" action="#{accueilBean.statistique()}" icon="ui-icon-arrowreturnthick-1-w" />  
+                    <p:menuitem value="Totale" url="#" icon="ui-icon-arrowreturnthick-1-e" />
+                </p:submenu>
+            </p:menubar> 
+        </h:form>
+    </body>
+</html>

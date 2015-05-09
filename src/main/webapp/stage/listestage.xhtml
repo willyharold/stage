@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>liste stages</title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+            <div id ="menu2">
+                <h:form id="listeStageForm"> 
+
+                    <p:contextMenu for="stagetable"> 
+                        <p:menuitem value="Affecter"  oncomplete="affectationDialog.show()"   icon="ui-icon-person"  update=":affectationForm:affectationPanel" />
+                        <p:menuitem value="Modifier"  oncomplete="modificationDialog.show()"  icon="ui-icon-pencil"  update=":modifierForm:modifierPanel" />
+                        <p:menuitem value="Supprimer" action ="#{compteBean.supprimer()}"     icon="ui-icon-close"   actionListener="#{tableBean.deleteCar}" />
+                    </p:contextMenu> 
+
+                    <p:dataTable var="stage" id="stagetable" value="#{stageBean.stages}"  selection="#{stageBean.selectedStage}" selectionMode="single" rowKey="#{stage.id}" paginator="true" rows="10">
+
+                        <f:facet name="header">
+                            Liste Des Stages  
+                        </f:facet> 
+                        <p:column headerText="Entreprise" filterBy="#{stage.entreprise.nomEntreprise}" sortBy="#{stage.entreprise.nomEntreprise}">  
+                            <h:outputText value="#{stage.entreprise.nomEntreprise}" />  
+                        </p:column>  
+
+                        <p:column headerText="Ville" filterBy="#{stage.entreprise.nomVille}" sortBy="#{stage.entreprise.nomVille}">  
+                            <h:outputText value="#{stage.entreprise.nomVille}" />  
+                        </p:column>
+
+                        <p:column headerText="Parcours" filterBy="#{stage.parcours}" sortBy="#{stage.parcours}">  
+                            <h:outputText value="#{stage.parcours}" />  
+                        </p:column> 
+
+                        <p:column headerText="Categorie" filterBy="#{stage.cathegorie}" sortBy="#{stage.cathegorie}">  
+                            <h:outputText value="#{stage.cathegorie}" />  
+                        </p:column> 
+
+                        <p:column headerText="Prospecteur" filterBy="#{stage.prospecteur}" sortBy="#{stage.prospecteur}">  
+                            <h:outputText value="#{stage.prospecteur}" />  
+                        </p:column>
+
+                        <p:column headerText="Affecter" filterBy="#{stage.status}" sortBy="#{stage.status}">  
+                            <h:outputText value="#{stage.status}" />  
+                        </p:column>
+                        <p:column headerText="Annee" filterBy="#{stage.anneeAcademique}" sortBy="#{stage.anneeAcademique}">  
+                            <h:outputText value="#{stage.anneeAcademique}" />  
+                        </p:column>
+                    </p:dataTable> 
+
+                </h:form>
+
+                <!--   Modification des stages   -->
+
+                <p:dialog header="Affectation" widgetVar="modificationDialog" resizable="false"  
+                          width="500" showEffect="clip" hideEffect="fold" > 
+
+                    <h:form style=""  id="modifierForm">
+
+                        <p:panelGrid columns="2" id="modifierPanel" >
+
+                            <f:facet name="header" >  
+                              Modifier un Stage  
+                            </f:facet>                             
+                            <h:outputLabel for="entreprise" value="Entreprise" /> 
+                            <p:selectOneMenu id="entreprise" value="#{stageBean.selectedStage.entreprise.nomEntreprise}" style="width: 95%;" >  
+                                <f:selectItem itemLabel="Entreprise" itemValue="Entreprise "/>
+                                <f:selectItems value="#{stageBean.nomEntreprises}" />  
+                                <p:ajax update="ville"  />  
+                            </p:selectOneMenu> 
+
+                            <h:outputLabel for="ville" value="Ville" /> 
+                            <p:selectOneMenu id="ville" value="#{stageBean.selectedStage.entreprise.nomVille}" style="width: 95%;">  
+                                <f:selectItems value="#{stageBean.nomEntrepriseVilles}" />  
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="parcours" value="Parcours: " />  
+                            <p:selectOneMenu id="parcours" value="#{stageBean.selectedStage.parcours}" required="true" style="width: 95%;" >
+                                <f:selectItems value="#{stageBean.listerParcours()}" />  
+                            </p:selectOneMenu> 
+
+                            <h:outputLabel for="categorie" value="Categorie: " />  
+                            <p:selectOneMenu id="categorie" value="#{stageBean.selectedStage.categorie}" required="true" style="width: 95%;">
+                                <f:selectItems value="#{stageBean.listeTypeStage()}" />  
+                            </p:selectOneMenu>
+
+                            <h:outputLabel for="prospecteur" value="Prospecteur: " />  
+                            <p:selectOneMenu id="prospecteur" value="#{stageBean.selectedStage.prospecteur}" required="true" style="width: 95%;">
+                                <f:selectItems value="#{stageBean.listerProspecteur()}" />  
+                            </p:selectOneMenu>
+
+                            <h:outputText value="Date de Debut"/> 
+                            <p:calendar effect="fadeIn" value="#{stageBean.selectedStage.debut}" />
+
+                            <h:outputText value="Date de Fin"/> 
+                            <p:calendar effect="fadeIn" value="#{stageBean.selectedStage.fin}"  />
+
+                            <h:outputText value="Theme"/> 
+                            <p:inputText  value="#{stageBean.selectedStage.theme}" />
+
+                            <f:facet name="footer"> <br/> 
+                                <p:commandButton value="Modifier"  type="submit" action="#{stageBean.enregister()}"  icon="ui-icon-disk" />  
+                                <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  
+                            </f:facet>
+                        </p:panelGrid>
+
+                    </h:form>
+
+                </p:dialog>
+
+                <!--   Affectation des stages   -->
+
+                <p:dialog header="Affectation" widgetVar="affectationDialog" resizable="false"  
+                          width="320" showEffect="clip" hideEffect="fold" >  
+
+                    <h:form id="affectationForm">
+                        <p:panelGrid columns="2" id="affectationPanel">
+
+                            <f:facet name="header">  
+                                Matricule de l'etudiant  
+                            </f:facet> 
+
+                            <h:outputLabel for="matricule" value="Matricule " />  
+                            <p:selectOneMenu id="matricule" value="#{stageBean.matricule}" required="true">
+                                <f:selectItem itemLabel="Matricule" itemValue="" />
+                                <f:selectItems value="#{stageBean.matricules}" />
+                            </p:selectOneMenu>
+
+                            <f:facet name="footer"> <br/> 
+                                <p:commandButton value="Affecter" action="#{stageBean.affecter()}"  icon="ui-icon-check" />  
+                            </f:facet>
+
+                        </p:panelGrid> 
+                    </h:form>
+                </p:dialog>
+
+            </div>
+            <div id ="pied">
+
+                <ui:include src="../pied.xhtml" />
+
+            </div>
+        </div>
+    </body>
+</html>

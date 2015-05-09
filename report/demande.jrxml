@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="demande" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6c4c3f0c-7795-4102-924f-b22aeba546c0">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="190" splitType="Stretch">
+			<image>
+				<reportElement x="244" y="28" width="68" height="80" uuid="33a8b82f-a4e6-4526-bfe7-e352235ec9d6"/>
+				<imageExpression><![CDATA["/home/pouemo/Bureau/images/logo ENS.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="10" y="28" width="199" height="17" uuid="5d653d73-4982-47d4-b7f2-6584b40a82d3"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Republique du Cameroun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="28" width="199" height="17" uuid="653840a5-9025-4825-8179-5f0cb7cdd547"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Republic of Cameroun]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="45" width="199" height="17" uuid="8ba925a7-4fc6-4d9a-b26a-757e3708519a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Universite de Maroua]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="338" y="45" width="199" height="17" uuid="01f14541-2f82-469c-a123-d6c56a885758"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[University of Maroua]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="119" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="124" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

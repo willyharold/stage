@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c08ef885-0053-4178-b617-d07162a9ad4b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="nom" class="java.lang.String"/>
+	<field name="premon" class="java.lang.String"/>
+	<field name="matricule" class="java.lang.String"/>
+	<field name="niveau" class="java.lang.String"/>
+	<field name="parcours" class="java.lang.String"/>
+	<field name="specialite" class="java.lang.String"/>
+	<variable name="matricule_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{matricule}]]></variableExpression>
+	</variable>
+	<variable name="nom_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{nom}]]></variableExpression>
+	</variable>
+	<variable name="premon_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{premon}]]></variableExpression>
+	</variable>
+	<variable name="matricule_2" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{matricule}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="196" splitType="Stretch">
+			<image>
+				<reportElement x="15" y="25" width="771" height="160" uuid="9da757e5-45c7-45f4-ad3e-662640d4f0c8"/>
+				<imageExpression><![CDATA["/home/pouemo/projetTutore/GestionStage/src/main/webapp/reports/image/entete.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="519" splitType="Stretch">
+			<textField>
+				<reportElement x="223" y="16" width="82" height="20" uuid="898d0a75-1047-43eb-806e-da6378ebe9b0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="41" y="16" width="100" height="20" uuid="176f54c1-f1d9-46cf-b4b9-b6706dcc3d75"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{matricule}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="414" y="16" width="100" height="20" uuid="5111fe39-dbff-46dc-9da0-4c5d6e5e5e86"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{premon}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="36">
+			<textField>
+				<reportElement x="399" y="14" width="100" height="16" uuid="09d1444b-81d8-4230-9289-bfccc03fe593"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+
+    
+    <application>
+        <el-resolver>
+            org.springframework.web.jsf.el.SpringBeanFacesELResolver
+        </el-resolver>
+    </application>
+    
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>connexion</from-outcome>
+            <to-view-id>/accueil.xhtml</to-view-id>
+            <redirect>/accueil.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+     <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>accueil</from-outcome>
+            <to-view-id>/accueil.xhtml</to-view-id>
+            <redirect>/accueil.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>etudiants</from-outcome>
+            <to-view-id>/etudiant.xhtml</to-view-id>
+            <redirect>/etudiant.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>stages</from-outcome>
+            <to-view-id>/stage/listestage.xhtml</to-view-id>
+            <redirect>/stage/listestage.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>statistique</from-outcome>
+            <to-view-id>/statistique.xhtml</to-view-id>
+            <redirect>/statistique.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>document</from-outcome>
+            <to-view-id>/document.xhtml</to-view-id>
+            <redirect>/document.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>entreprise</from-outcome>
+            <to-view-id>/entreprise/listeentreprises.xhtml</to-view-id>
+            <redirect>/entreprise/listeentreprises.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>compte</from-outcome>
+            <to-view-id>/compte.xhtml</to-view-id>
+            <redirect>/compte.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>deconnexion</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+            <redirect>/index.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/*</from-view-id>
+        <navigation-case>
+            <from-outcome>agent</from-outcome>
+            <to-view-id>/agent.xhtml</to-view-id>
+            <redirect>/agent.xhtml</redirect>
+        </navigation-case>
+    </navigation-rule>
+    
+</faces-config>

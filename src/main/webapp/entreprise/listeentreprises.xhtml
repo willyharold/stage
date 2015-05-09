@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>liste entreprises</title>
+        <link rel="StyleSheet" href="../layout.css" type="text/css"/>
+    </h:head>
+    <body>
+        <div id="body">
+            <div id="div1">
+
+            </div>
+            <div id ="menu1">
+                <ui:include src="../entete.xhtml" />
+            </div>
+            <div id ="menu2">
+                <h:form id="form"> 
+
+                    <p:contextMenu for="entrepriseTable"> 
+                        <p:menuitem value="Details"     oncomplete="entrepriseDialog.show()"   icon="ui-icon-search"  update=":entrepriseDetails" />
+                        <p:menuitem value="Historique"  oncomplete="histoiriqueDialog.show()"  icon="ui-icon-document" update=":afficheHistoirique" />
+                        <p:menuitem value="Modifier"    oncomplete="modificationDialog.show()" icon="ui-icon-pencil" update=":modifierForm:modifierPanel" />
+                    </p:contextMenu>
+
+                    <p:dataTable var="entreprise" id="entrepriseTable" value="#{entrepriseBean.entreprises}" selection="#{entrepriseBean.entrepriseSelected}" selectionMode="single" rowKey="#{entreprise.id}" paginator="true" rows="10" >  
+
+                        <f:facet name="header">  
+                            Liste des Entreprise  
+                        </f:facet> 
+
+                        <p:column headerText="Nom" filterBy="#{entreprise.nomEntreprise}" sortBy="#{entreprise.nomEntreprise}">
+                            <h:outputText value="#{entreprise.nomEntreprise}" />  
+                        </p:column>
+
+                        <p:column headerText="Sigle" filterBy="#{entreprise.sigle}" sortBy="#{entreprise.sigle}">
+                            <h:outputText value="#{entreprise.sigle}" />  
+                        </p:column>
+
+                        <p:column headerText="Ville" filterBy="#{entreprise.nomVille}" sortBy="#{entreprise.nomVille}">  
+                            <h:outputText value="#{entreprise.nomVille}" />  
+                        </p:column> 
+
+                        <p:column headerText="Telephone" filterBy="#{entreprise.numeroTelephone}" sortBy="#{entreprise.numeroTelephone}">  
+                            <h:outputText value="#{entreprise.numeroTelephone}" />  
+                        </p:column> 
+
+                        <p:column headerText="E-mail" filterBy="#{entreprise.e_mail}" sortBy="#{entreprise.e_mail}">  
+                            <h:outputText value="#{entreprise.e_mail}" />  
+                        </p:column>
+
+                        <p:column headerText="B.P." filterBy="#{entreprise.boitePostale}" sortBy="#{entreprise.boitePostale}">  
+                            <h:outputText value="#{entreprise.boitePostale}" />  
+                        </p:column>
+
+                    </p:dataTable> 
+                </h:form>
+
+                <!-- la boite de dialogue qui affiche tous les details d'une entreprise -->
+
+                <p:dialog header="Details du Compte" widgetVar="entrepriseDialog" resizable="false"  
+                          width="600" showEffect="clip" hideEffect="fold">  
+
+                    <h:panelGrid id="entrepriseDetails" columns="2" > 
+                        <h:outputText value="Nom:" />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.nomEntreprise}" />
+                        <h:outputText value="Sigle:" />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.sigle}" />
+                        <h:outputText value="Ville:" />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.nomVille}" />
+                        <h:outputText value="Email:" />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.e_mail}" />
+                        <h:outputText value="Telephone: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.numeroTelephone}" />
+                        <h:outputText value="Genre: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.genre}" />
+                        <h:outputText value="Responsable: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.reponsable}" />
+                        <h:outputText value="Boite Postale: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.boitePostale}" />
+                        <h:outputText value="Fax: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.fax}" />
+                        <h:outputText value="Enregistrer le: " />  
+                        <h:outputText value="#{entrepriseBean.entrepriseSelected.dateEnregistremet}" />
+                    </h:panelGrid>  
+                </p:dialog>
+
+                <!-- la boite de dialogue qui affiche l'historique d'une entreprise -->
+
+                <p:dialog header="Historiques" widgetVar="histoiriqueDialog" resizable="true"  
+                          width="800" showEffect="clip" hideEffect="fold">  
+
+                    <p:dataTable var="stage" value="#{entrepriseBean.listeStages()}"  id="afficheHistoirique">
+
+                        <p:column headerText="Annee"  >  
+                            <h:outputText value="#{stage.anneeAcademic.anneeAcademique}" />  
+                        </p:column>
+
+                        <p:column headerText="Parcours" >  
+                            <h:outputText value="#{stage.parcours}" />  
+                        </p:column> 
+
+                        <p:column headerText="Categorie">  
+                            <h:outputText value="#{stage.cathegorie}" />  
+                        </p:column> 
+
+                        <p:column headerText="Prospecteur" >  
+                            <h:outputText value="#{stage.prospecteur}" />  
+                        </p:column>
+
+                        <p:column headerText="Theme">  
+                            <h:outputText value="#{stage.theme}" />  
+                        </p:column> 
+                    </p:dataTable>   
+                </p:dialog>
+                
+                <!-- la boite de dialogue qui permet de modifier d'une entreprise -->
+                
+                <p:dialog header="Modification" widgetVar="modificationDialog" resizable="true"  
+                          width="450" showEffect="clip" hideEffect="fold">  
+
+                    <h:form   id="modifierForm">
+
+                    <p:panelGrid columns="2" id="modifierPanel" >
+
+                        <f:facet name="header">  
+                            Modifier Une Entreprise 
+                        </f:facet>
+
+                        <h:outputText value="Nom"/> 
+                        <p:inputText  id="nomUpdate" value="#{entrepriseBean.entrepriseSelected.nomEntreprise}"/>
+
+                        <h:outputText value="Sigle"/> 
+                        <p:inputText  id="sigleUpdate" value="#{entrepriseBean.entrepriseSelected.sigle}"/>
+
+                        <h:outputText value="Ville"/> 
+                        <p:inputText  id="villeUpdate" value="#{entrepriseBean.entrepriseSelected.nomVille}"/>
+
+                        <h:outputText value="Genre"/> 
+                        <p:inputText  id="genreUpdate" value="#{entrepriseBean.entrepriseSelected.genre}"/>
+
+                        <h:outputText value="Responsable"/> 
+                        <p:inputText  id="responsableUpdate" value="#{entrepriseBean.entrepriseSelected.reponsable}"/>
+
+                        <h:outputText value="Telephone"/> 
+                        <p:inputText  id="telephoneUpdate" value="#{entrepriseBean.entrepriseSelected.numeroTelephone}"/> 
+
+                        <h:outputLabel for="email" value="E-mail: " />  
+                        <p:inputText   id="emailUpdate" value="#{entrepriseBean.entrepriseSelected.e_mail}" required="true" />
+
+                        <h:outputText value="Boite Postal"/> 
+                        <p:inputText  id="bpUpdate" value="#{entrepriseBean.entrepriseSelected.boitePostale}"/> 
+
+                        <h:outputText value="Fax"/> 
+                        <p:inputText  id="faxUpdate" value="#{entrepriseBean.entrepriseSelected.fax}"/> 
+
+                        <h:outputText value="Localisation"/> 
+                        <p:inputText  id="localisationUpdate" value="#{entrepriseBean.entrepriseSelected.localisation}"/> 
+
+                        <f:facet name="footer"> <br/> 
+                            <p:commandButton value="Modifer" action="#{entrepriseBean.modifier()}"  icon="ui-icon-disk" />  
+                        </f:facet>
+                        <f:facet name="footer">  
+                            <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  
+                        </f:facet>
+                    </p:panelGrid>
+
+                </h:form>
+                      
+                </p:dialog>
+                
+            </div>
+            
+            <div id ="pied">
+
+                <ui:include src="../pied.xhtml" />
+
+            </div>
+        </div>
+    </body>
+</html>
