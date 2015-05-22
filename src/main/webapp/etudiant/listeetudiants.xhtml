@@ -26,11 +26,11 @@ and open the template in the editor.
             </div>
 
             <div id ="menu2">
-                <h:form id="form"> 
+                <h:form id="list"> 
 
                     <p:contextMenu for="etudiantTable">     
-                        <p:menuitem value="Historique"   oncomplete="histoiriqueDialog.show()"  icon="ui-icon-document" update=":afficheHistorique" />
-                        <p:menuitem value="Modifier"     oncomplete="modificationDialog.show()" icon="ui-icon-pencil"   update=":modifierForm:modifierPanel"/> 
+                        <p:menuitem value="Historique"   onclick="PF('historiqueDialog').show()"  icon="ui-icon-document" update=":afficheHistorique:updateform" />
+                        <p:menuitem value="Modifier"     onclick="PF('modificationDialog').show()" icon="ui-icon-pencil"   update=":modifierForm:modifierPanel"/> 
                     </p:contextMenu>
 
                     <p:dataTable id="etudiantTable" var="etudiant" value="#{etudiantBean.etudiants}" selection="#{etudiantBean.etudiantSelect}" selectionMode="single" rowKey="#{etudiant.id}" paginator="true" rows="10">  
@@ -62,11 +62,11 @@ and open the template in the editor.
                     </p:dataTable> 
                 </h:form>
 
-                <p:dialog header="Historiques" widgetVar="histoiriqueDialog" resizable="true"  
+                <p:dialog header="Historiques" widgetVar="historiqueDialog" resizable="true"  
                           width="900" showEffect="clip" hideEffect="fold">  
 
                     <p:dataTable var="stage" value="#{etudiantBean.stagesEtudiant}"  id="afficheHistorique">
-
+                         <h:form id="updateform"> 
                         <p:column headerText="Annee"  >  
                             <h:outputText value="#{stage.anneeAcademic.anneeAcademique}" />  
                         </p:column>
@@ -85,20 +85,21 @@ and open the template in the editor.
 
                         <p:column headerText="Theme">  
                             <h:outputText value="#{stage.theme}" />  
-                        </p:column> 
+                        </p:column>
+                        </h:form>
                     </p:dataTable>   
                 </p:dialog>
 
                 <p:dialog header="Modification" widgetVar="modificationDialog" resizable="true"  
                           width="400" showEffect="clip" hideEffect="fold">  
 
-                    <h:form style=""  id="modifierForm">
+                    <h:form id="modifierForm">
 
                         <p:panelGrid columns="2"  id="modifierPanel">
 
                             <h:outputText value="Nom"/> 
                             <p:inputText  id="nomUpdate" value="#{etudiantBean.etudiantSelect.nom}"/> 
-
+                             
                             <h:outputText value="Prenom"/> 
                             <p:inputText  id="prenomUpdate" value="#{etudiantBean.etudiantSelect.premon}"/>
 
@@ -106,17 +107,19 @@ and open the template in the editor.
                             <p:inputText  id="matriculeUpdate" value="#{etudiantBean.etudiantSelect.matricule}"/> 
 
                             <h:outputLabel for="parcours" value="Parcours: " />  
-                            <h:selectOneMenu id="parcoursUpdate" value="#{etudiantBean.etudiantSelect.parcours}" required="true">
+                            <h:selectOneMenu id="parcours" value="#{etudiantBean.etudiantSelect.parcours}" required="true">
                                 <f:selectItems value="#{etudiantBean.listerParcours()}" />  
                             </h:selectOneMenu>
 
                             <h:outputLabel for="niveau" value="Niveau: " />  
-                            <h:selectOneMenu id="niveauUpdate" value="#{etudiantBean.etudiantSelect.niveau}" required="true">
+                            <h:selectOneMenu id="niveau" value="#{etudiantBean.etudiantSelect.niveau}" required="true">
                                 <f:selectItems value="#{etudiantBean.listerNiveau()}" />  
                             </h:selectOneMenu>
-
+                           
+                            <h:inputHidden  id="entree10" value="#{etudiantBean.etudiantSelect.id}"/> 
+                           
                             <f:facet name="footer"> <br/> 
-                                <p:commandButton value="OK" action="#{etudiantBean.enregistrer()}"  actionListener="#{etudiantBean.save}" icon="ui-icon-disk" />  
+                                <p:commandButton value="Modifier" actionListener="#{etudiantBean.modifier()}" icon="ui-icon-disk" />  
                             </f:facet>
                             <f:facet name="footer">  
                                 <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  

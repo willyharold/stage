@@ -52,8 +52,6 @@ public class Etudiant implements Serializable {
     @OneToMany(mappedBy = "etudiant")
     private List<EtudiantStage> etudiantStages;
     
-    @OneToMany(mappedBy = "etudiant")
-    private List<Documents> documents;
 
     public Etudiant() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

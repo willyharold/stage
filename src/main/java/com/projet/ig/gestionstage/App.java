@@ -171,30 +171,27 @@ public class App {
 //
 //
 //           //la gestion des etudiant Stage
-//            //IEtudiantStageDao etudiantStage = ctx.getBean(IEtudiantStageDao.class);
-           /* agentService = (IAgentScolariteService)ctx.getBean("IAgentScolariteService");
-
-            AgentScolarite ag = new AgentScolarite();
-            ag.setEmail("pouemo@gmail.fr");
-            ag.setFonction(Fonction.Agent);
-            ag.setLogin("admin");
-            ag.setMotdePasse("admin");
-            ag.setNom("pouemo");
-            ag.setNumeroTelephone("76324361");
-            ag.setPremon("Adrien");
-
-            agentService.enregistrer(ag);*/
+//          IEtudiantStageDao etudiantStage = ctx.getBean(IEtudiantStageDao.class);
+//            agentService = (IAgentScolariteService)ctx.getBean("IAgentScolariteService");
+//
+//            AgentScolarite ag = new AgentScolarite();
+//            ag.setEmail("pouemo@gmail.fr");
+//            ag.setFonction(Fonction.Agent);
+//            ag.setLogin("admin");
+//            ag.setMotdePasse("admin");
+//            ag.setNom("pouemo");
+//            ag.setNumeroTelephone("76324361");
+//            ag.setPremon("Adrien");
+//
+//            agentService.enregistrer(ag);
             
            IAgentDeSuiviService agentsuivi = (IAgentDeSuiviService)ctx.getBean("IAgentDeSuiviService");
 
            AgentDeSuivi agentDeSuivi= new AgentDeSuivi();
-           agentDeSuivi.setNom("takoutsing");
-           agentDeSuivi.setEmail("wtakoutsing@gmail.com");
-           agentDeSuivi.setEnService("daar");
-           agentDeSuivi.setPremon("harold");
-           agentDeSuivi.setNumeroTelephone("699996363");
-           agentDeSuivi.setFonction("enseignant");
-           agentsuivi.Enregistrer(agentDeSuivi);
+           agentsuivi.del(131072);
+           //agentDeSuivi = agentsuivi.findById(98304);
+            //System.out.println(agentDeSuivi);
+            //agentsuivi.Supprimer(agentDeSuivi);
            //
 //            IEtudiantStageService etudiantStage = (IEtudiantStageService)ctx.getBean("IEtudiantStageService");
 //

@@ -5,14 +5,17 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
         <title>entete</title>
     </h:head>
-    <body>
-        <h:form>
-            <p:menubar id="unique">  activeIndex="0">
+    <h:body>
+        <h:form id="menubar">
+            
+            <p:menubar id="unique">
                 <p:menuitem value="Accueil" action="#{accueilBean.accueil()}" icon="ui-icon-home"/>
                 <p:submenu label="Agent" icon="ui-icon-person">  
                     <p:menuitem value="Ajouter" url="/agent/ajouteragent.xhtml" icon="ui-icon-plus" />  
@@ -36,13 +39,16 @@ and open the template in the editor.
                     <p:menuitem value="Liste" url="/stage/listestage.xhtml" icon="ui-icon-document" />  
                     <p:menuitem value="Stagiaires" url="/stage/stagiaires.xhtml" icon="ui-icon-person" />
                 </p:submenu>
-                <p:menuitem value="Documents" action="#{accueilBean.document()}" icon="ui-icon-folder-collapsed"/>  
-                <p:menuitem value=""  icon="ui-icon-" />
+                <p:submenu label="Documents" icon="ui-icon-folder-collapsed">
+                    <p:menuitem value="Ajouter" url="/document/listesdocuments.xhtml" icon="ui-icon-plus" />
+                </p:submenu>
                 <p:submenu label="Statistiques" icon="ui-icon-bookmark">  
                     <p:menuitem value="Annuelle" action="#{accueilBean.statistique()}" icon="ui-icon-arrowreturnthick-1-w" />  
                     <p:menuitem value="Totale" url="#" icon="ui-icon-arrowreturnthick-1-e" />
                 </p:submenu>
+              
             </p:menubar> 
         </h:form>
-    </body>
+        
+    </h:body>
 </html>

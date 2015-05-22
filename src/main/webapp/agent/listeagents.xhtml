@@ -10,14 +10,14 @@ and open the template in the editor.
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
     <h:head>
-        <title>Modifier mot de passe </title>
+        <title>Liste des agents</title>
         <link rel="StyleSheet" href="../layout.css" type="text/css"/>
     </h:head>
-    <body>
+    <h:body>
         <div id="body">
-            <div id="menu" style="float: right; margin-right: 10%;">
-                <ui:include src="../menu.xhtml" />
-            </div>
+            <!--            <div id="menu" style="float: right; margin-right: 10%;">
+                            <ui:include src="../menu.xhtml" />
+                        </div>-->
             <div id="div1">
 
             </div>
@@ -26,14 +26,15 @@ and open the template in the editor.
             </div>
 
             <div id ="menu2">
-                <h:form id="form">  
-                    
+
+                <h:form id="list">
                     <p:contextMenu for="agentTable">     
-                        <p:menuitem value="Affecter"   oncomplete="histoiriqueDialog.show()"  icon="ui-icon-home"  />
-                        <p:menuitem value="Modifier"     oncomplete="modificationDialog.show()" icon="ui-icon-pencil"  /> 
+                        <p:menuitem value="Affecter"   oncomplete="AffecterDialog.show()"  icon="ui-icon-home"  />
+                        <p:menuitem value="Supprimer" onclick="PF('cd').show()" icon="ui-icon-home"  update=":supform" />
+                        <p:menuitem value="Modifier" onclick="PF('modificationDialog').show()" icon="ui-icon-pencil"  update=":updateform:display"/> 
                     </p:contextMenu>
-                    
-                    <p:dataTable  var="agent" id="agentTable" value="#{agentDeSuiviBean.agents}" selection="#{agentDeSuiviBean.agentSelect}" selectionMode="single" rowKey="#{agent.id}" paginator="true" rows="10">  
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                    <p:dataTable  var="agent" id="agentTable" value="#{agentDeSuiviBean.agents}" selection="#{agentDeSuiviBean.agent}" selectionMode="single" rowKey="#{agent.id}" paginator="true" rows="10">  
 
                         <f:facet name="header">  
                             Liste des Agents  
@@ -44,7 +45,7 @@ and open the template in the editor.
                             <h:outputText value="#{agent.nom}" />  
                         </p:column>  
 
-                        <p:column headerText="Prenom" filterBy="#{agentpremon}" sortBy="#{agent.premon}">  
+                        <p:column headerText="Prenom" filterBy="#{agent.premon}" sortBy="#{agent.premon}">  
                             <h:outputText value="#{agent.premon}" />  
                         </p:column> 
 
@@ -59,32 +60,52 @@ and open the template in the editor.
                         <p:column headerText="E-mail" filterBy="#{agent.email}" sortBy="#{agent.email}">  
                             <h:outputText value="#{agent.email}" />  
                         </p:column>
+
                     </p:dataTable> 
-
-                    <p:dialog header="Details du Compte" widgetVar="compteDialog" resizable="false"  
-                              width="500" showEffect="clip" hideEffect="fold">  
-
-                        <h:panelGrid id="display" columns="2" >  
-
-                            <h:outputText value="Nom:" />  
-                            <h:outputText value="#{agentDeSuiviBean.agentSelect.nom}" />  
-
-                            <h:outputText value="Prenom:" />  
-                            <h:outputText value="#{agentDeSuiviBean.agentSelect.premon}" />  
-
-                            <h:outputText value="Fonction:" />  
-                            <h:outputText value="#{agentDeSuiviBean.agentSelect.fonction}" />  
-
-                            <h:outputText value="Telephone:" />  
-                            <h:outputText value="#{agentDeSuiviBean.agentSelect.numeroTelephone}" />
-
-                            <h:outputText value="E-mail:" />  
-                            <h:outputText value="#{agentDeSuiviBean.agentSelect.email}" />
-
-                        </h:panelGrid>  
-                    </p:dialog>
                 </h:form>
+                <p:dialog id="dialog" header="Modifier un agent" widgetVar="modificationDialog" resizable="false"  
+                          width="400" showEffect="clip" >  
+                    <h:form id ="updateform">
+                        <h:panelGrid id="display" columns="2" >  
+                            <h:outputText value="Nom"/> 
+                            <p:inputText  id="entree0" value="#{agentDeSuiviBean.agent.nom}"/> 
+
+                            <h:outputText value="Prenom"/> 
+                            <p:inputText  id="entree6" value="#{agentDeSuiviBean.agent.premon}"/>
+
+                            <h:outputText value="En Service"/> 
+                            <p:inputText  id="entree7" value="#{agentDeSuiviBean.agent.enService}"/> 
+
+                            <h:outputLabel for="email" value="E-mail: " />  
+                            <p:inputText   id="email" value="#{agentDeSuiviBean.agent.email}" required="true" />
+
+                            <h:outputLabel for="fonction" value="Fonction: " />  
+                            <p:inputText   id="fonction" value="#{agentDeSuiviBean.agent.fonction}" required="true" />
+
+                            <h:outputText value="Telephone"/> 
+                            <p:inputText  id="entree9" value="#{agentDeSuiviBean.agent.numeroTelephone}"/> 
+
+                            <h:inputHidden  id="entree10" value="#{agentDeSuiviBean.agent.id}"/> 
+
+                            <f:facet name="footer"> <br/> 
+                                <p:commandButton value="Modifier" action="#{agentDeSuiviBean.modifier()}"  oncomplete="PF('modificationDialog').hide()" icon="ui-icon-disk" update=":list:agentTable" />  
+                            </f:facet>
+                            <f:facet name="footer">  
+                                <p:commandButton value="Initialiser" type="reset" />  
+                            </f:facet>
+                        </h:panelGrid> 
+                    </h:form>
+                </p:dialog>       
+
+                <p:confirmDialog  id="confirm" message="voulez vous vraiment supprimer?" showEffect="fade" widgetVar="cd" severity="alert">
+                    <h:form id="supform">
+                        <h:inputHidden  id="entree11" value="#{agentDeSuiviBean.agent.id}"/>
+                        <p:commandButton value="Yes" action="#{agentDeSuiviBean.supprimer()}"  oncomplete="PF('cd').hide()" icon="ui-icon-check" update=":list:agentTable"/>
+                        <p:commandButton value="No" onclick="PF('cd').hide()" icon="ui-icon-close" />
+                    </h:form>
+                </p:confirmDialog>
             </div>
         </div>
-    </body>
+
+    </h:body>
 </html>

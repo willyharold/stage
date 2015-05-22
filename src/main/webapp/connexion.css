@@ -5,12 +5,36 @@
     Description:
         Purpose of the stylesheet follows.
 */
+body{
 
+}
 #connexion{
    text-align: center;
-   margin-left: 35%;
-   margin-right: 35%;
-   margin-top: 25%;
+   width: 30%;
+   padding-left: 3%;
+/*   margin-left: 25%;*/
+   
+}
+#logo{
+    background-image: url(images/logo_2.png);
+    height: 120px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin-top: 3%;
+}
+#entete{
+    background-image: url(images/banniere.jpeg);
+    background-repeat: no-repeat;
+    background-position: top center;
+    height: 110px;
+}
+#photo{
+    background-image: url(images/Cadena.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    height: 200px;
+    margin-left: 23%;
+    width: 13%;
 }
 
 form{
@@ -18,4 +42,9 @@ form{
     background-color:graytext;
     padding: 5px;
     border-radius: 10px;
+}
+#photo, #connexion{
+    display: inline-block;
+    margin-top: 3%;
+    
 }

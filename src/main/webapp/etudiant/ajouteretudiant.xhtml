@@ -28,11 +28,13 @@ and open the template in the editor.
             <div id ="menu2">
 
                 <h:form style=""  id="ajouter">
-
+                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"  />
                     <p:growl id="growl" showDetail="true" sticky="true" /> 
-
+                    
                     <p:panelGrid columns="2"  >
-
+                         <f:facet name="header">  
+                            Ajout d'un étudiant
+                        </f:facet>
                         <h:outputText value="Nom"/> 
                         <p:inputText  id="entree0" value="#{etudiantBean.etudiant.nom}"/> 
 
@@ -53,7 +55,7 @@ and open the template in the editor.
                         </p:selectOneMenu>
 
                         <f:facet name="footer"> <br/> 
-                            <p:commandButton value="Enregistrer" action="#{etudiantBean.enregistrer()}"  actionListener="#{etudiantBean.save}" icon="ui-icon-disk" />  
+                            <p:commandButton value="Enregistrer" actionListener="#{etudiantBean.enregistrer()}" icon="ui-icon-disk" />  
                         </f:facet>
                         <f:facet name="footer">  
                             <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  

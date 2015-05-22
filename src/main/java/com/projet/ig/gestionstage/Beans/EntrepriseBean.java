@@ -147,7 +147,6 @@ public class EntrepriseBean implements SelectableDataModel<Entreprise>, Serializ
     public void setNomDomaine(String nomDomaine) {
         this.nomDomaine = nomDomaine;
     }
-
     public List<String> getNomDomaines() {
         nomDomaines = new LinkedList<String>();
         try {

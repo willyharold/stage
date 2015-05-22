@@ -23,4 +23,6 @@ public interface IAgentDeSuiviService {
     public List<AgentDeSuivi> findByAll() throws DataAccessException;
 
     public void Modifier(AgentDeSuivi e) throws DataAccessException;
+    
+    public void del(long e) throws DataAccessException;
 }

@@ -13,12 +13,23 @@ and open the template in the editor.
         <link rel="StyleSheet" href="connexion.css" type="text/css"/>
     </h:head>
     <body id ="acceuil">
+        
+        <div id="entete">
+            
+        </div>
+        <div id="logo">
+            
+        </div>
+        <div id="photo">
+            
+        </div>
+        
         <div id ="connexion">
             <h:form   id="form">
                 <p:panel  >
                     <h:panelGrid columns="2"  >
                         <h:outputText value="login :"  />
-                        <p:inputText  id="entree1" value ="#{connexionBean.agent.login}"/>
+                        <p:inputText  id="entree1" value ="#{connexionBean.agent.login}" required="true"/>
 
                         <h:outputLabel for="pwd1" value="password:" />
                         <p:password id="pwd1" value="#{connexionBean.agent.motdePasse}"  label="Password 1" required="true"/> 

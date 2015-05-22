@@ -195,12 +195,14 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     }
 
     public void enregistrer() throws DataAccessException {
-
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "l'enregistrement a été éffectué avec success!!"));
         etudiantService.Enregistrer(etudiant);
+
     }
 
     public void modifier() throws DataAccessException {
-        etudiantService.Modifier(etudiant);
+        System.out.println(etudiantSelect.getId());
+        etudiantService.Modifier(etudiantSelect);
     }
 
     public List<Niveau> listerNiveau() {
@@ -246,19 +248,7 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
         
         return parcoursOptions;
     }
-     
-     //les messages
-     
-     
-    public void save(ActionEvent actionEvent) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Enregistrement", "OK "));
-    }
-    
-    public void update(ActionEvent actionEvent) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("modifier ok", "OK "));
-    }
+       
     
     @Override
     public Etudiant getRowData(String rowKey) {

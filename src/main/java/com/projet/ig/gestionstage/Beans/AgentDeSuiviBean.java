@@ -7,15 +7,16 @@ package com.projet.ig.gestionstage.Beans;
 import com.douwe.generic.dao.DataAccessException;
 import com.projet.ig.gestionstage.entity.AgentDeSuivi;
 import com.projet.ig.gestionstage.entity.AgentEntreprise;
-import com.projet.ig.gestionstage.entity.Documents;
 import com.projet.ig.gestionstage.services.IAgentDeSuiviService;
 import com.projet.ig.gestionstage.services.IAgentEntrepriseService;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import org.primefaces.model.SelectableDataModel;
 
 /**
@@ -29,9 +30,9 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
     @ManagedProperty(value = "#{IAgentDeSuiviService}") 
     private IAgentDeSuiviService agentService;
     private AgentDeSuivi agent = new AgentDeSuivi();
-    private List<AgentDeSuivi> agents;
-    private AgentDeSuivi agentSelect = new AgentDeSuivi();
-    
+    private AgentDeSuivi agentchoisi = new AgentDeSuivi();
+    private List<AgentDeSuivi> agents; 
+  
     @ManagedProperty(value = "#{IAgentEntrepriseService}")
     private IAgentEntrepriseService agentEntrepriseService;
     private AgentEntreprise agentEntreprise = new AgentEntreprise();
@@ -41,14 +42,6 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
     private String prenom;
     private String email;
     private String telephone;
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
     public String getNom() {
         return nom;
@@ -73,6 +66,14 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }   
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public AgentDeSuiviBean() {
     }
@@ -106,14 +107,6 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
         this.agents = agents;
     }
 
-    public AgentDeSuivi getAgentSelect() {
-        return agentSelect;
-    }
-
-    public void setAgentSelect(AgentDeSuivi agentSelect) {
-        this.agentSelect = agentSelect;
-    }
-
     public IAgentEntrepriseService getAgentEntrepriseService() {
         return agentEntrepriseService;
     }
@@ -145,34 +138,35 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
     public void setAgentEntrepriseSelect(AgentEntreprise agentEntrepriseSelect) {
         this.agentEntrepriseSelect = agentEntrepriseSelect;
     }
-    
-    public void enregistrer(){
+    public void enregistrer() throws DataAccessException{
         agent.setNom(nom);
         agent.setPremon(prenom);
         agent.setNumeroTelephone(telephone);
         agent.setEmail(email);
-        System.out.println(agent);
-        try {
-            agentService.Enregistrer(agent);
-        } catch (DataAccessException ex) {
-            Logger.getLogger(DocumentBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        // System.out.println(agent);
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "l'enregistrement a été éffectué avec success!!"));
+        agentService.Enregistrer(agent);
+        
     }
     
-     public void modifier(){
-        try {
+     public void modifier() throws DataAccessException{
+            //System.out.println(agent);
             agentService.Modifier(agent);
-        } catch (DataAccessException ex) {
-            Logger.getLogger(DocumentBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
      
-     public void supprimer(){
+     public void supprimer() throws DataAccessException{
+         System.out.println(agentService.findById(agent.getId()));
         try {
-            agentService.Supprimer(agent);
+            agentService.del(agent.getId());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "la suppression a été éffectué avec success!!"));
         } catch (DataAccessException ex) {
-            Logger.getLogger(DocumentBean.class.getName()).log(Level.SEVERE, null, ex);
+        
         }
+         System.out.println(agent);
+    }
+      public void addMessage(String summary, String detail) {
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
+        FacesContext.getCurrentInstance().addMessage(null, message);
     }
      
       @Override
@@ -193,6 +187,14 @@ public class AgentDeSuiviBean implements SelectableDataModel<AgentDeSuivi>{
     @Override
     public Object getRowKey(AgentDeSuivi ag) {
         return ag.getId();
+    }
+
+    public AgentDeSuivi getAgentchoisi() {
+        return agentchoisi;
+    }
+
+    public void setAgentchoisi(AgentDeSuivi agentchoisi) {
+        this.agentchoisi = agentchoisi;
     }
     
 }

@@ -20,7 +20,6 @@
     <bean id= "IEtudiantStageDao" class = "com.projet.ig.gestionstage.Dao.BD.EtudiantStageDaoBD" />
     <bean id= "IAnneeAcademiqueDao" class = "com.projet.ig.gestionstage.Dao.BD.AnneeAcademiqueDaoBD" />
     <bean id= "IAgentScolariteDao" class = "com.projet.ig.gestionstage.Dao.BD.AgentScolariteDaoDB" />
-    <bean id= "IDocumentsDao" class = "com.projet.ig.gestionstage.Dao.BD.DocumentsDaoBD" />
     <bean id= "IAgentEntrepriseDao" class = "com.projet.ig.gestionstage.Dao.BD.AgentEntrepriseDaoBD" />
     
 
@@ -75,9 +74,6 @@
     </bean>
     
     <!-- la classe service des documents -->
-    <bean id="IDocumentsService" class="com.projet.ig.gestionstage.services.Imp.DocumentsServiceImpl">
-        <property name="documentsDao" ref="IDocumentsDao"/>
-    </bean>
     
     <!-- la classe service des agents_Entreprise -->
     <bean id="IAgentEntrepriseService" class="com.projet.ig.gestionstage.services.Imp.AgentEntrepriseServieImpl">
