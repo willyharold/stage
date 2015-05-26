@@ -29,7 +29,7 @@ and open the template in the editor.
 
                 <h:form id="list">
                     <p:contextMenu for="agentTable">     
-                        <p:menuitem value="Affecter"   oncomplete="AffecterDialog.show()"  icon="ui-icon-home"  />
+                        <p:menuitem value="Affecter"   onclick="PF('AffecterDialog').show()"  icon="ui-icon-home"  />
                         <p:menuitem value="Supprimer" onclick="PF('cd').show()" icon="ui-icon-home"  update=":supform" />
                         <p:menuitem value="Modifier" onclick="PF('modificationDialog').show()" icon="ui-icon-pencil"  update=":updateform:display"/> 
                     </p:contextMenu>

@@ -345,18 +345,8 @@ public class EntrepriseBean implements SelectableDataModel<Entreprise>, Serializ
         }
     }
 
-    public void modifier() {
-
-
-        try {
-            if (entrepriseSelected.getNomVille() != null) {
-                Entreprise entr = entrepriseService.findByNomVille(entrepriseSelected.getNomEntreprise(), entrepriseSelected.getNomVille());
-                System.out.println("la valeur de la ville " + entrepriseSelected.getNomVille());
-                entrepriseService.modifier(entr);
-            }
-        } catch (DataAccessException ex) {
-            Logger.getLogger(EntrepriseBean.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    public void modifier() throws DataAccessException {
+        entrepriseService.modifier(entrepriseSelected);
     }
 
     public List<Stage> listeStages() throws DataAccessException {

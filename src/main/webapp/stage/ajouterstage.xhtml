@@ -32,14 +32,14 @@ and open the template in the editor.
                         </f:facet>                             
                         <h:outputLabel for="entreprise" value="Entreprise" /> 
                         <p:selectOneMenu id="entreprise" value="#{stageBean.nomDeEntreprise}" style="width: 95%;" >  
-                            <f:selectItem itemLabel="Entreprise" itemValue="Entreprise "/>
+<!--                            <f:selectItem itemLabel="Entreprise" itemValue="Entreprise "/>-->
                             <f:selectItems value="#{stageBean.nomEntreprises}" />  
                             <p:ajax update="ville"  />  
                         </p:selectOneMenu> 
 
                         <h:outputLabel for="ville" value="Ville" /> 
                         <p:selectOneMenu id="ville" value="#{stageBean.nomDeVilleEntreprise}" style="width: 95%;">
-                            <f:selectItem itemLabel="Ville" itemValue="Ville "/>
+<!--                            <f:selectItem itemLabel="Ville" itemValue="Ville "/>-->
                             <f:selectItems value="#{stageBean.nomEntrepriseVilles}" />  
                         </p:selectOneMenu>
 

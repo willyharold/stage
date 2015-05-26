@@ -48,20 +48,16 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     private Etudiant etudiantSelect = new Etudiant();
     private Etudiant etudianUpdate;
     private List<Etudiant> etudiants;
-    
     @ManagedProperty(value = "#{IEtudiantStageService}")
     private IEtudiantStageService etudiantStageService;
     private EtudiantStage etudiantStage = new EtudiantStage();
     private List<EtudiantStage> etudiantStages;
     private List<String> matricules;
     private List<Stage> stagesEtudiant;
-   // private Parcours parcoursEtudiant;
+    // private Parcours parcoursEtudiant;
     private Niveau niveauEtudiant;
-    
     private EtudiantStage etudiantStageSelected;
-    
     private SelectItem[] parcoursOptions = new SelectItem[11];
-    
     private String matricule = "";
 
     public String getMatricule() {
@@ -71,11 +67,8 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     public void setMatricule(String matricule) {
         this.matricule = matricule;
     }
-    
 
     //generation des getters et setter
-    
-    
     public EtudiantStage getEtudiantStageSelected() {
         return etudiantStageSelected;
     }
@@ -92,25 +85,33 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     public void setEtudianUpdate(Etudiant etudianUpdate) {
         this.etudianUpdate = etudianUpdate;
     }
+
+    public JasperPrint getJasperPrint() {
+        return jasperPrint;
+    }
+
+    public void setJasperPrint(JasperPrint jasperPrint) {
+        this.jasperPrint = jasperPrint;
+    }
     
-    
-    public List<Stage> getStagesEtudiant() {
-        try {
-            if( (etudiantSelect.getMatricule() != null) && (!etudiantSelect.getMatricule().isEmpty())){
-            stagesEtudiant = etudiantStageService.listStages(etudiantSelect.getMatricule());
-            return stagesEtudiant;
+        public List<Stage> listStagesEtudiant() throws DataAccessException {
+        if (!(etudiant.getMatricule() == null) && !(etudiant.getMatricule().compareTo("") == 0)) {
+           // System.out.println(etudiant.getMatricule());
+            stagesEtudiant = etudiantStageService.listStages("12x079s");
+            for (Stage etudiantStage1 : stagesEtudiant) {
+                System.out.println(etudiantStage1);
             }
-        } catch (DataAccessException ex) {
-            Logger.getLogger(EtudiantBean.class.getName()).log(Level.SEVERE, null, ex);
+            return stagesEtudiant;
         }
         return null;
     }
 
-    public void setStagesEtudiant(List<Stage> stagesEtudiant) {
-        this.stagesEtudiant = stagesEtudiant;
+    public List<Stage> getStagesEtudiant() {
+        return stagesEtudiant;
     }
-
-   public Niveau getNiveauEtudiant() {
+        
+        
+    public Niveau getNiveauEtudiant() {
         niveauEtudiant = etudiant.getNiveau();
         return niveauEtudiant;
     }
@@ -201,7 +202,12 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     }
 
     public void modifier() throws DataAccessException {
-        System.out.println(etudiantSelect.getId());
+        etudiantSelect = etudiantService.findById(etudiant.getId());
+        etudiantSelect.setNom(etudiant.getNom());
+        etudiantSelect.setPremon(etudiant.getPremon());
+        etudiantSelect.setNiveau(etudiant.getNiveau());
+        etudiantSelect.setParcours(etudiant.getParcours());
+        etudiantSelect.setMatricule(etudiant.getMatricule());
         etudiantService.Modifier(etudiantSelect);
     }
 
@@ -233,7 +239,7 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
         return list;
     }
 
-     public SelectItem[] getParcoursOptions() {
+    public SelectItem[] getParcoursOptions() {
         parcoursOptions[0] = new SelectItem("", "Select");
         parcoursOptions[1] = new SelectItem(Parcours.AGEPD, "AGEPD");
         parcoursOptions[2] = new SelectItem(Parcours.BEARSPA, "BEARSPA");
@@ -245,11 +251,10 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
         parcoursOptions[8] = new SelectItem(Parcours.SCIENV, "SCIENV");
         parcoursOptions[9] = new SelectItem(Parcours.SCISOD, "SCISOD");
         parcoursOptions[10] = new SelectItem(Parcours.TRAMARH, "TRAMARH");
-        
+
         return parcoursOptions;
     }
-       
-    
+
     @Override
     public Etudiant getRowData(String rowKey) {
         try {
@@ -272,43 +277,44 @@ public class EtudiantBean implements SelectableDataModel<Etudiant> {
     public Object getRowKey(Etudiant en) {
         return en.getId();
     }
-    
-    
-    
-    
     /*   Generons maintenant les pdf pour la gestion des etudiants       */
-    
     JasperPrint jasperPrint;
-    public void init() throws JRException{
-        System.out.println("la taille des elements est de "+etudiants.size());
+
+    public void init() throws JRException {
+        System.out.println("la taille des elements est de " + etudiants.size());
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(etudiants);
         jasperPrint = JasperFillManager.fillReport("/home/pouemo/projetTutore/GestionStage/src/main/webapp/reports/report.jasper", new HashMap(), beanCollectionDataSource);
     }
-    
-    public void pdf(ActionEvent actionEvent) throws JRException, IOException{
-        
+
+    public void pdf(ActionEvent actionEvent) throws JRException, IOException {
+
         init();
-        
-        HttpServletResponse httpServletResponse = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+
+        HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         httpServletResponse.addHeader("content-disposition", "attachment; filename=liste_etudiant.pdf");
         ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream); 
+        JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
     }
-    
+
     //JasperPrint jasperPrint;
-    public void init1() throws JRException{
-        System.out.println("la taille des elements est de "+etudiantStages.size());
+    public void init1() throws JRException {
+        System.out.println("la taille des elements est de " + etudiantStages.size());
         JRBeanCollectionDataSource beanCollectionDataSource = new JRBeanCollectionDataSource(etudiantStages);
         jasperPrint = JasperFillManager.fillReport("/home/pouemo/projetTutore/GestionStage/src/main/webapp/reports/miseEnStage.jasper", new HashMap(), beanCollectionDataSource);
     }
-    
-    public void miseEnStagePdf(ActionEvent actionEvent) throws JRException, IOException{
-        
+
+    public void miseEnStagePdf(ActionEvent actionEvent) throws JRException, IOException {
+
         init1();
-        
-        HttpServletResponse httpServletResponse = (HttpServletResponse)FacesContext.getCurrentInstance().getExternalContext().getResponse();
+
+        HttpServletResponse httpServletResponse = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
         httpServletResponse.addHeader("content-disposition", "attachment; filename=miseEnStage.pdf");
         ServletOutputStream servletOutputStream = httpServletResponse.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream); 
+        JasperExportManager.exportReportToPdfStream(jasperPrint, servletOutputStream);
     }
+
+    public void setStagesEtudiant(List<Stage> stagesEtudiant) {
+        this.stagesEtudiant = stagesEtudiant;
+    }
+    
 }

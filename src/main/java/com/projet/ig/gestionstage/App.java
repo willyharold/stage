@@ -48,8 +48,7 @@ public class App {
     private static IAgentScolariteService agentService;
      private static IAgentEntrepriseService agentEnService;
 
-    public static void main(String[] args){
-        try {
+    public static void main(String[] args) throws DataAccessException{
             ApplicationContext ctx = new ClassPathXmlApplicationContext("Spring-conf.xml");
 //
 //            /* le teste de la couhe service du domaine Activite*/
@@ -153,14 +152,11 @@ public class App {
 //            /*   pour un etudiant   */
 //            etudiantservice = (IEtudiantService) ctx.getBean("IEtudiantService");
 //            Etudiant etudiant = new Etudiant();
-//            etudiant.setMatricule("11v000s");
-//            etudiant.setNiveau(Niveau.Licence3);
-//            etudiant.setNom("kouakou");
-//            etudiant.setParcours(Parcours.INFOTEL);
-//            etudiant.setPremon("Rene");
-//            etudiant.setSpecialite("Securite");
-//
-//            etudiantservice.Enregistrer(etudiant);
+//            etudiant= etudiantservice.findById(4L);
+//            System.out.println(etudiant);  
+//            etudiant.setPremon("willy");
+//            etudiantservice.Modifier(etudiant);
+            //etudiantservice.Enregistrer(etudiant);
 //
 //           // etudiant = etudiantservice.findByMatricule("11x322l");
 //
@@ -185,17 +181,23 @@ public class App {
 //
 //            agentService.enregistrer(ag);
             
-           IAgentDeSuiviService agentsuivi = (IAgentDeSuiviService)ctx.getBean("IAgentDeSuiviService");
-
-           AgentDeSuivi agentDeSuivi= new AgentDeSuivi();
-           agentsuivi.del(131072);
+//           IAgentDeSuiviService agentsuivi = (IAgentDeSuiviService)ctx.getBean("IAgentDeSuiviService");
+//
+//           AgentDeSuivi agentDeSuivi= new AgentDeSuivi();
+//           agentsuivi.del(131072);
            //agentDeSuivi = agentsuivi.findById(98304);
             //System.out.println(agentDeSuivi);
             //agentsuivi.Supprimer(agentDeSuivi);
            //
-//            IEtudiantStageService etudiantStage = (IEtudiantStageService)ctx.getBean("IEtudiantStageService");
-//
-//            EtudiantStage ets = new EtudiantStage();
+            IEtudiantStageService etudiantStage = (IEtudiantStageService)ctx.getBean("IEtudiantStageService");
+
+            EtudiantStage ets = new EtudiantStage();
+            List<Stage> lisstage = new LinkedList<Stage>();
+            lisstage= etudiantStage.listStages("12x079s");
+            for (Stage etudiantStage1 : lisstage) {
+                System.out.println(etudiantStage1);
+            
+        }
 //            ets.setMatricule(etudiant.getMatricule());
 //            ets.setNote((float) 16.5);
 //            ets.setEtudiant(etudiant);
@@ -236,9 +238,5 @@ public class App {
     //        
     //        stage = stageservice.findById(1L);
            // stageservice.supprimer(stage);
-        } catch (DataAccessException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
     }
 }

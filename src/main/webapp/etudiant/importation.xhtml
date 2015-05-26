@@ -27,7 +27,7 @@ and open the template in the editor.
 
                 <h:form enctype="multipart/form-data">  
 
-                    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"  
+                    <p:fileUpload fileUploadListener="#{fileUploadView.handleFileUpload()}"  
                                   mode="advanced"   
                                   update="messages"  
                                   sizeLimit="100000"   

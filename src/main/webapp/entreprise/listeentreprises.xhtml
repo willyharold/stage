@@ -25,9 +25,9 @@ and open the template in the editor.
                 <h:form id="form"> 
 
                     <p:contextMenu for="entrepriseTable"> 
-                        <p:menuitem value="Details"     oncomplete="entrepriseDialog.show()"   icon="ui-icon-search"  update=":entrepriseDetails" />
-                        <p:menuitem value="Historique"  oncomplete="histoiriqueDialog.show()"  icon="ui-icon-document" update=":afficheHistoirique" />
-                        <p:menuitem value="Modifier"    oncomplete="modificationDialog.show()" icon="ui-icon-pencil" update=":modifierForm:modifierPanel" />
+                        <p:menuitem value="Details"     onclick="PF('entrepriseDialog').show()"   icon="ui-icon-search"  update=":entrepriseDetails" />
+                        <p:menuitem value="Historique"  onclick="PF('histoiriqueDialog').show()"  icon="ui-icon-document" update=":afficheHistoirique" />
+                        <p:menuitem value="Modifier"    onclick="PF('modificationDialog').show()" icon="ui-icon-pencil" update=":modifierForm:modifierPanel" />
                     </p:contextMenu>
 
                     <p:dataTable var="entreprise" id="entrepriseTable" value="#{entrepriseBean.entreprises}" selection="#{entrepriseBean.entrepriseSelected}" selectionMode="single" rowKey="#{entreprise.id}" paginator="true" rows="10" >  
@@ -65,7 +65,7 @@ and open the template in the editor.
 
                 <!-- la boite de dialogue qui affiche tous les details d'une entreprise -->
 
-                <p:dialog header="Details du Compte" widgetVar="entrepriseDialog" resizable="false"  
+                <p:dialog header="Details de l'entreprise" widgetVar="entrepriseDialog" resizable="false"  
                           width="600" showEffect="clip" hideEffect="fold">  
 
                     <h:panelGrid id="entrepriseDetails" columns="2" > 
@@ -100,7 +100,7 @@ and open the template in the editor.
                     <p:dataTable var="stage" value="#{entrepriseBean.listeStages()}"  id="afficheHistoirique">
 
                         <p:column headerText="Annee"  >  
-                            <h:outputText value="#{stage.anneeAcademic.anneeAcademique}" />  
+                            <h:outputText value="#{stage.anneeAcademique}" />  
                         </p:column>
 
                         <p:column headerText="Parcours" >  
@@ -123,16 +123,12 @@ and open the template in the editor.
                 
                 <!-- la boite de dialogue qui permet de modifier d'une entreprise -->
                 
-                <p:dialog header="Modification" widgetVar="modificationDialog" resizable="true"  
-                          width="450" showEffect="clip" hideEffect="fold">  
+                <p:dialog header="Modifier une entreprise" widgetVar="modificationDialog" resizable="true"  
+                          width="450" showEffect="clip" hideEffect="fold" >  
 
                     <h:form   id="modifierForm">
 
                     <p:panelGrid columns="2" id="modifierPanel" >
-
-                        <f:facet name="header">  
-                            Modifier Une Entreprise 
-                        </f:facet>
 
                         <h:outputText value="Nom"/> 
                         <p:inputText  id="nomUpdate" value="#{entrepriseBean.entrepriseSelected.nomEntreprise}"/>
@@ -145,7 +141,10 @@ and open the template in the editor.
 
                         <h:outputText value="Genre"/> 
                         <p:inputText  id="genreUpdate" value="#{entrepriseBean.entrepriseSelected.genre}"/>
-
+                        
+                        <h:outputText value="Type"/> 
+                        <p:inputText  id="modifiertype" value="#{entrepriseBean.entrepriseSelected.type}"/>
+                        
                         <h:outputText value="Responsable"/> 
                         <p:inputText  id="responsableUpdate" value="#{entrepriseBean.entrepriseSelected.reponsable}"/>
 
@@ -163,9 +162,11 @@ and open the template in the editor.
 
                         <h:outputText value="Localisation"/> 
                         <p:inputText  id="localisationUpdate" value="#{entrepriseBean.entrepriseSelected.localisation}"/> 
-
+                        
+                        <h:inputHidden  id="entree10" value="#{entrepriseBean.entrepriseSelected.id}"/>
+                        
                         <f:facet name="footer"> <br/> 
-                            <p:commandButton value="Modifer" action="#{entrepriseBean.modifier()}"  icon="ui-icon-disk" />  
+                            <p:commandButton value="Modifer" actionListener="#{entrepriseBean.modifier()}"  update=":form:entrepriseTable" onclick="PF('modificationDialog').hide()" icon="ui-icon-disk" />  
                         </f:facet>
                         <f:facet name="footer">  
                             <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  

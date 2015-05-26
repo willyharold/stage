@@ -25,7 +25,7 @@ and open the template in the editor.
                 <h:form id="listeStageForm"> 
 
                     <p:contextMenu for="stagetable"> 
-                        <p:menuitem value="Affecter"  oncomplete="affectationDialog.show()"   icon="ui-icon-person"  update=":affectationForm:affectationPanel" />
+                        <p:menuitem value="Affecter"  onclick="PF('affectationDialog').show()"   icon="ui-icon-person"  update=":affectationForm:affectationPanel" />
                         <p:menuitem value="Modifier"  oncomplete="modificationDialog.show()"  icon="ui-icon-pencil"  update=":modifierForm:modifierPanel" />
                         <p:menuitem value="Supprimer" action ="#{compteBean.supprimer()}"     icon="ui-icon-close"   actionListener="#{tableBean.deleteCar}" />
                     </p:contextMenu> 

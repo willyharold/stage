@@ -29,11 +29,11 @@ and open the template in the editor.
                 <h:form id="list"> 
 
                     <p:contextMenu for="etudiantTable">     
-                        <p:menuitem value="Historique"   onclick="PF('historiqueDialog').show()"  icon="ui-icon-document" update=":afficheHistorique:updateform" />
+                        <p:menuitem value="Historique"   onclick="PF('historiqueDialog').show()"  icon="ui-icon-document" update=":afficheHistorique:updateform"/>
                         <p:menuitem value="Modifier"     onclick="PF('modificationDialog').show()" icon="ui-icon-pencil"   update=":modifierForm:modifierPanel"/> 
                     </p:contextMenu>
 
-                    <p:dataTable id="etudiantTable" var="etudiant" value="#{etudiantBean.etudiants}" selection="#{etudiantBean.etudiantSelect}" selectionMode="single" rowKey="#{etudiant.id}" paginator="true" rows="10">  
+                    <p:dataTable id="etudiantTable" var="etudiant" value="#{etudiantBean.etudiants}" selection="#{etudiantBean.etudiant}" selectionMode="single" rowKey="#{etudiant.id}" paginator="true" rows="10">  
 
                         <f:facet name="header">  
                             Liste des Etudiants  
@@ -65,10 +65,10 @@ and open the template in the editor.
                 <p:dialog header="Historiques" widgetVar="historiqueDialog" resizable="true"  
                           width="900" showEffect="clip" hideEffect="fold">  
 
-                    <p:dataTable var="stage" value="#{etudiantBean.stagesEtudiant}"  id="afficheHistorique">
+                    <p:dataTable var="stage" value="#{etudiantBean.listStagesEtudiant()}"  id="afficheHistorique">
                          <h:form id="updateform"> 
                         <p:column headerText="Annee"  >  
-                            <h:outputText value="#{stage.anneeAcademic.anneeAcademique}" />  
+                            <h:outputText value="#{stage.anneeAcademique}" />  
                         </p:column>
 
                         <p:column headerText="Entreprise" >  
@@ -98,28 +98,28 @@ and open the template in the editor.
                         <p:panelGrid columns="2"  id="modifierPanel">
 
                             <h:outputText value="Nom"/> 
-                            <p:inputText  id="nomUpdate" value="#{etudiantBean.etudiantSelect.nom}"/> 
+                            <p:inputText  id="nomUpdate" value="#{etudiantBean.etudiant.nom}"/> 
                              
                             <h:outputText value="Prenom"/> 
-                            <p:inputText  id="prenomUpdate" value="#{etudiantBean.etudiantSelect.premon}"/>
+                            <p:inputText  id="prenomUpdate" value="#{etudiantBean.etudiant.premon}"/>
 
                             <h:outputText value="Matricule"/> 
-                            <p:inputText  id="matriculeUpdate" value="#{etudiantBean.etudiantSelect.matricule}"/> 
+                            <p:inputText  id="matriculeUpdate" value="#{etudiantBean.etudiant.matricule}"/> 
 
                             <h:outputLabel for="parcours" value="Parcours: " />  
-                            <h:selectOneMenu id="parcours" value="#{etudiantBean.etudiantSelect.parcours}" required="true">
+                            <h:selectOneMenu id="parcours" value="#{etudiantBean.etudiant.parcours}" required="true">
                                 <f:selectItems value="#{etudiantBean.listerParcours()}" />  
                             </h:selectOneMenu>
 
                             <h:outputLabel for="niveau" value="Niveau: " />  
-                            <h:selectOneMenu id="niveau" value="#{etudiantBean.etudiantSelect.niveau}" required="true">
+                            <h:selectOneMenu id="niveau" value="#{etudiantBean.etudiant.niveau}" required="true">
                                 <f:selectItems value="#{etudiantBean.listerNiveau()}" />  
                             </h:selectOneMenu>
                            
-                            <h:inputHidden  id="entree10" value="#{etudiantBean.etudiantSelect.id}"/> 
+                            <h:inputHidden  id="entree10" value="#{etudiantBean.etudiant.id}"/> 
                            
                             <f:facet name="footer"> <br/> 
-                                <p:commandButton value="Modifier" actionListener="#{etudiantBean.modifier()}" icon="ui-icon-disk" />  
+                                <p:commandButton value="Modifier" actionListener="#{etudiantBean.modifier()}" update=":list:etudiantTable" onclick="PF('modificationDialog').hide()"   icon="ui-icon-disk" />  
                             </f:facet>
                             <f:facet name="footer">  
                                 <p:commandButton value="Initialiser" type="reset" icon="ui-icon-cancel" />  

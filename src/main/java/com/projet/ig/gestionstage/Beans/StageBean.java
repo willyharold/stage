@@ -338,12 +338,12 @@ public class StageBean implements SelectableDataModel<Stage>, Serializable {
         this.etudiantStages = etudiantStages;
     }
 
-    public String enregister() {
-        
+    public void enregister() throws DataAccessException {
+          //stageService.enregistrer(stage);
         System.out.println("--------------  je suis ici -----------");
         try {
             if ((!nomDeEntreprise.isEmpty()) && (!nomDeVilleEntreprise.isEmpty() ) ) {
-                System.out.println("---Ville----"+nomDeVilleEntreprise);
+                //System.out.println("---Ville----"+nomDeVilleEntreprise);
                 Entreprise ent = entrepriseService.findByNomVille(nomDeEntreprise, nomDeVilleEntreprise);
                 stage.setEntreprise(ent);
                 stageService.enregistrer(stage);
@@ -351,7 +351,6 @@ public class StageBean implements SelectableDataModel<Stage>, Serializable {
         } catch (DataAccessException ex) {
             Logger.getLogger(StageBean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "entregisterStage";
     }
 
     public void affecter() throws DataAccessException {
@@ -437,7 +436,7 @@ public class StageBean implements SelectableDataModel<Stage>, Serializable {
     public List<String> getNomEntrepriseVilles() {
         nomEntrepriseVilles = new LinkedList<String>();
         if (!nomDeEntreprise.isEmpty()) {
-            System.out.println(" ++++ in in in +++  "+nomDeEntreprise);
+            //System.out.println(" ++++ in in in +++  "+nomDeEntreprise);
             try {
                 nomEntrepriseVilles = entrepriseService.listeEntrepriseVille(nomDeEntreprise);
             } catch (DataAccessException ex) {
@@ -445,7 +444,7 @@ public class StageBean implements SelectableDataModel<Stage>, Serializable {
             }
             return nomEntrepriseVilles;
         }
-        nomEntrepriseVilles.add("ville");
+        //nomEntrepriseVilles.add("ville");
         return nomEntrepriseVilles;
     }
 

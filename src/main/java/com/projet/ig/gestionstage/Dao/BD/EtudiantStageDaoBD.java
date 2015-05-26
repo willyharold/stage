@@ -23,7 +23,8 @@ public class EtudiantStageDaoBD extends GenericDao<EtudiantStage, Long> implemen
     public List<Stage> listStages(String matricule) throws DataAccessException {
         List<Stage> lisstage = new LinkedList<Stage>();
         List<EtudiantStage> listEtuStage = new LinkedList<EtudiantStage>();
-        listEtuStage = getManager().createQuery("select ets from EtudiantStage ets where ets.matricule = :statut").setParameter("statut", matricule).getResultList();
+       // System.out.println("je suis a la dao");
+        listEtuStage = getManager().createNamedQuery("etudiantstage.findstage").setParameter("param", matricule).getResultList();
         for (EtudiantStage etudiantStage : listEtuStage) {
             lisstage.add(etudiantStage.getStage()); 
             

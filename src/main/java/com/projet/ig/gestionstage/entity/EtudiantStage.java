@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -25,6 +26,7 @@ import javax.persistence.UniqueConstraint;
         uniqueConstraints = {
     @UniqueConstraint(columnNames = {"matricule", "Annee"})
 })
+@NamedQuery(name = "etudiantstage.findstage",query = " SELECT c from EtudiantStage c WHERE c.matricule = :param")
 public class EtudiantStage implements Serializable {
 
     private static final long serialVersionUID = 1L;
